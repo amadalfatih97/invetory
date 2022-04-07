@@ -17,8 +17,8 @@
                         <td>{{$no++}}</td>
                         <td>{{$data->namasatuan}}</td>
                         <td>
-                            <button class="button btn-error" disabled="disabled">Edit</button>
-                            <button disabled="disabled">Hapus</button>
+                            <a class="btn btn-info"  href="/satuan/{{$data->id}}" >Edit</button>
+                            <a class="btn btn-danger" >Hapus</button>
                         </td>
 
                         <td></td>

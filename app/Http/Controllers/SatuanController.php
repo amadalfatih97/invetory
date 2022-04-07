@@ -29,4 +29,10 @@ class SatuanController extends Controller
         $satuan->save();
         return redirect('/satuan/list');
     }
+
+    public function dataById($id){
+        $satuan = satuan::find($id);
+        return view('satuan.edit',compact('satuan'));
+        // return $id;
+    }
 }
