@@ -8,4 +8,4 @@ class satuan extends Model
 {
     public $timestamps = false;
     protected $fillable = ['namasatuan'/*,stok,dll  */];//field table database
-}
+};
