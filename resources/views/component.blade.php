@@ -1,5 +1,4 @@
-@extends('master');
-
+@extends('master')
 @section('main')
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->

@@ -27,6 +27,8 @@
   <link rel="stylesheet" href="{{ asset('frontend') }}/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{ asset('frontend') }}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('frontend') }}/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,17 +40,23 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini fixed">
 <div class="wrapper">
-    @include('layouts.header');
-<!-- Left side column. contains the logo and sidebar -->
-    @include('layouts.sidebar');
+
+  @include('layouts.header')
+  <!-- Left side column. contains the logo and sidebar -->
+  @include('layouts.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
   @yield('main')
   <!-- /.content-wrapper -->
-  @include('layouts.footer');
 
+  
+  @include('layouts.footer')
+
+  <!-- Control Sidebar -->
+  @include('layouts.control-sidebar')
+  <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
@@ -65,6 +73,10 @@
 </script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{{asset('frontend')}}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- DataTables -->
+<script src="{{asset('frontend')}}/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="{{asset('frontend')}}/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- Morris.js charts -->
 <script src="{{asset('frontend')}}/bower_components/raphael/raphael.min.js"></script>
 <script src="{{asset('frontend')}}/bower_components/morris.js/morris.min.js"></script>
@@ -92,5 +104,19 @@
 <script src="{{asset('frontend')}}/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('frontend')}}/dist/js/demo.js"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
 </body>
 </html>
