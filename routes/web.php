@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('master');
+    return view('component');
 });
 // Route::get('/', 'BarangController@index');
 Route::get('/satuan/list', 'SatuanController@index');
