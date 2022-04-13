@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'BarangController@index');
+Route::get('/', function () {
+    return view('master');
+});
+// Route::get('/', 'BarangController@index');
 Route::get('/satuan/list', 'SatuanController@index');
 Route::get('/satuan/add', 'SatuanController@input');
 Route::post('/satuan/add', 'SatuanController@prosesInput');
