@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('master')
 
 @section('main')
 <div class="row">
