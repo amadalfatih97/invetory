@@ -63,7 +63,8 @@ main{
     }
 
     .sidebar-nav li:hover{
-        background-color: #eef2f8;
+        /* background-color: #eef2f8; */
+        color: black;
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
     }

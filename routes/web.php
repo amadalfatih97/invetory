@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'BarangController@index');
+Route::get('/barang/list', 'BarangController@index');
+Route::get('/barang/add', 'BarangController@input');
+Route::post('/barang/add', 'BarangController@prosesInput');
 Route::get('/satuan/list', 'SatuanController@index');
 Route::get('/satuan/add', 'SatuanController@input');
 Route::post('/satuan/add', 'SatuanController@prosesInput');

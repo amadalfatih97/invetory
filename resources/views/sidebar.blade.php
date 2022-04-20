@@ -24,7 +24,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="nav-link px-3 ">
+                    <a href='{{url("barang/list")}}' class="nav-link px-3 ">
                         <span class="me-2"><i class="bi bi-files"></i></span>
                         <span>Data Barang</span>
                     </a>
