@@ -54,7 +54,7 @@
                             <tr>
                                 <td>{{$no++}}</td>
                                 <td>{{$data->namabarang}}</td>
-                                <td>{{$data->idsatuan}}</td>
+                                <td>{{$data->namasatuan}}</td>
                                 <td>{{$data->stok}}</td>
                                 <td>{{$data->lokasi}}</td>
                                 <td>{{$data->ket}}</td>

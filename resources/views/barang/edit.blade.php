@@ -16,7 +16,7 @@
     <div class="container-fluid">
         
         <?php
-            $getSelect = '';
+            $getSelect = $barang->idsatuan;
         ?>
         @if ($errors->any())
         <?php
@@ -33,11 +33,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card p-3">
-                    <form action="{{url('/barang/add')}}" method="post">
+                    <form action="/barang/update/{{$barang->id}}" method="post">
+                        @method('PATCH')
                         @csrf
                         <label for="namabarang" class="form-label">Input Nama barang</label>
                         <div class="mb-3 input-group has-validation">
-                            <input type="text" value="{{old('namabarang')}}" 
+                            <input type="text" 
+                            value="{{old('namabarang',$barang->namabarang)}}" 
                             class="form-control 
                             {{ $errors->get('namabarang') ? 'is-invalid'  : ''}}"
                             id="exampleInputbarang" 
@@ -55,7 +57,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="stok" class="form-label">Stok</label>
-                            <input type="number" value="{{old('stok')}}" class="form-control  {{ $errors->get('stok') ? 'is-invalid'  : ''}}"
+                            <input type="number" value="{{old('stok',$barang->stok)}}" class="form-control  
+                                {{ $errors->get('stok') ? 'is-invalid'  : ''}}"
                                 id="exampleInputstok" name="stok" required>
                         </div>
                         <div class="mb-3">
@@ -63,14 +66,15 @@
                             <textarea class="form-control  {{ $errors->get('lokasi') ? 'is-invalid'  : ''}}" 
                                 name="lokasi" 
                                 id="exampleFormControlTextarea1" 
-                                rows="3" required>
-                                {{old('lokasi')}}
+                                rows="3" required>{{old('lokasi',$barang->lokasi)}}
                             </textarea>
                         </div>
                         <div class="mb-3">
                             <label for="ket" class="form-label">Keterangan</label>
-                            <textarea class="form-control  {{ $errors->get('ket') ? 'is-invalid'  : ''}}" name="ket" id="exampleFormControlTextarea1" rows="3">
-                                {{old('ket')}}
+                            <textarea class="form-control  
+                            {{ $errors->get('ket') ? 'is-invalid'  : ''}}" 
+                            name="ket" id="exampleFormControlTextarea1" 
+                            rows="3">{{old('ket',$barang->ket)}}
                             </textarea>
                         </div>
                         
