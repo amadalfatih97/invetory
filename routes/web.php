@@ -20,6 +20,7 @@ Route::get('/barang/{id}', 'BarangController@dataById');
 Route::patch('/barang/update/{id}', 'BarangController@prosesUpdate');
 Route::delete('/barang/delete/{id}', 'BarangController@prosesDelete');
 
+Route::get('/barang-masuk', 'BarangController@barangmasuk')->name('barangmasuk');
 Route::get('/join', 'BarangController@join');
 
 Route::get('/satuan/list', 'SatuanController@index');

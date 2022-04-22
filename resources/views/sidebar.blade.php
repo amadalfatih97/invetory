@@ -36,9 +36,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="nav-link px-3 ">
+                    <a href='{{url("barang-masuk")}}' class="nav-link px-3 ">
                         <span class="me-2"><i class="bi bi-files"></i></span>
-                        <span>Data</span>
+                        <span>Barang Masuk</span>
                     </a>
                 </li>
                 <li class="my-4">

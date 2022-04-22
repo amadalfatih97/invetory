@@ -97,4 +97,9 @@ class BarangController extends Controller
         $barang->delete();
         return redirect('/barang/list')->with('success','data berhasil dihapus!');;
     }
+
+    public function barangmasuk(Request $request){
+        $satuans = satuan::all();
+        return view('barang.masuk', compact('satuans'));
+    }
 }

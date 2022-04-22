@@ -35,6 +35,35 @@
                 <div class="card p-3">
                     <form action="{{url('/barang/add')}}" method="post">
                         @csrf
+                        <div class="input-cek mb-3 d-flex">
+                            <div class="form-check me-3">
+                                <input class="form-check-input" type="radio" name="typeinput" id="type-input1" value="0" onclick="tipeinput(0)" checked>
+                                <label class="form-check-label" for="type-input1">
+                                    Barang Baru
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="typeinput" id="type-input2" value="1" onclick="tipeinput(1)">
+                                <label class="form-check-label" for="type-input2">
+                                    Barang Sudah Ada
+                                </label>
+                            </div>
+                        </div>
+                        <div id="tes">tes</div>
+
+                        <div class="mb-3">
+                            <label for="idsatuan" class="form-label">Satuan</label>
+                            <select class="form-select  {{ $errors->get('idsatuan') ? 'is-invalid'  : ''}}"
+                                name="idsatuan" aria-label="Default select example" required>
+                                <option>Pilih Satuan</option>
+                                @foreach ($satuans as $item)
+                                <option value="{{$item->id}}" {{$item->id == $getSelect ? 'selected' : ''}}>
+                                    {{$item->namasatuan}}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <label for="namabarang" class="form-label">Input Nama barang</label>
                         <div class="mb-3 input-group has-validation">
                             <input type="text" value="{{old('namabarang')}}" class="form-control 
@@ -81,3 +110,6 @@
 </div>
 
 @endsection
+{{-- @push('scripts')
+    <script src="{{asset('js')}}/main.js" ></script>
+@endpush --}}
