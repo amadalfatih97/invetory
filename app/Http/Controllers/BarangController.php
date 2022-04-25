@@ -100,6 +100,7 @@ class BarangController extends Controller
 
     public function barangmasuk(Request $request){
         $satuans = satuan::all();
-        return view('barang.masuk', compact('satuans'));
+        $barangs = Barang::all();
+        return view('barang.masuk', compact('satuans','barangs'));
     }
 }

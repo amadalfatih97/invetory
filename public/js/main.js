@@ -2,12 +2,26 @@
 console.log('js has successfuly load');
 // alert('hello world')
 // https://www.youtube.com/watch?v=PsUHaQ3iSts
-function tipeinput(val){
-    if (val == 1) {
-        document.getElementById("tes").style.display="block";
-    } else {
-        document.getElementById("tes").style.display="none";
-    };
-    return;
-}
+// function tipeinput(val){
+//     if (val == 0) {
+//         document.getElementById("barang-baru").style.display="block";
+//         document.getElementById("barang-lama").style.display="none";
+//     } else {
+//         document.getElementById("barang-lama").style.display="block";
+//         document.getElementById("barang-baru").style.display="none";
+//     };
+//     return;
+// }
 // </script>
+$(document).ready(function(){
+    /* by default hide all radio_content div elements except first element */
+    $(".content .radio_content").hide();
+    $(".content .radio_content:first-child").show();
+
+    /* when any radio element is clicked, Get the attribute value of that clicked radio element and show the radio_content div element which matches the attribute value and hide the remaining tab content div elements */
+    $(".radio_wrap").click(function(){
+      var current_raido = $(this).attr("data-radio");
+      $(".content .radio_content").hide();
+      $("."+current_raido).show();
+    })
+});
