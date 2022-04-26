@@ -25,6 +25,11 @@
 main{
     margin-top: var(--topNavbarHeight);
 }
+
+
+#input-date{
+    cursor: pointer;
+}
 @media (max-width:991px) {
     .hide-to-mobile{
         display: none;

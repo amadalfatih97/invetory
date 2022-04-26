@@ -51,55 +51,42 @@
                     </div>
                     <div class="content">
                         <div class="radio_content radio_1" id="barang-lama">
-                            <form action="{{url('/barang/add')}}" method="post">
+                            <form action="{{url('/barang-masuk/add')}}" method="post">
                                 @csrf
     
                                 <div class="mb-3">
                                     <label for="idbarang" class="form-label">Nama Barang</label>
                                     <select class="form-select  {{ $errors->get('idbarang') ? 'is-invalid'  : ''}}"
-                                        name="idbarang" aria-label="Default select example" required>
+                                        name="idbarang" aria-label="Default select example"
+                                         required>
                                         <option>Pilih Barang</option>
                                         @foreach ($barangs as $item)
-                                        <option value="{{$item->id}}" {{$item->id == $getSelect ? 'selected' : ''}}>
+                                        <option value="{{$item->id}}" {{$item->id == old('idbarang') ? 'selected' : ''}}>
                                             {{$item->namabarang}}
                                         </option>
                                         @endforeach
                                     </select>
                                 </div>
-    
-                                {{-- <label class="form-label">Input Nama barang</label>
-                                <div class="mb-3 input-group has-validation">
-                                    <input type="text" value="{{old('namabarang')}}" class="form-control 
-                                    {{ $errors->get('namabarang') ? 'is-invalid'  : ''}}" id="exampleInputbarang"
-                                        name="namabarang" required>
-                                </div> --}}
                                 <div class="mb-3">
-                                    <label for="stok" class="form-label">Stok</label>
-                                    <input type="number" value="{{old('stok')}}" class="form-control  
-                                    {{ $errors->get('stok') ? 'is-invalid'  : ''}}" id="exampleInputstok" name="stok"
+                                    <label for="qty" class="form-label">Quantity</label>
+                                    <input type="number" value="{{old('qty')}}" class="form-control  
+                                    {{ $errors->get('qty') ? 'is-invalid'  : ''}}" id="exampleInputstok" name="qty"
                                         required>
                                 </div>
     
+                                <div class="mb-3">
+                                    <label for="tanggalmasuk" class="form-label">Tanggal Masuk</label>
+                                    <input type="date" id="input-date" name="tanggalmasuk" 
+                                     class="form-control">
+                                </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                                <a class='btn btn-warning ml-3' href='{{url("barang/list")}}'>Cancel</a>
+                                <a class='btn btn-warning ml-3' href='{{url("barang-masuk/list")}}'>Cancel</a>
                             </form>
                         </div>
                         <div class="radio_content radio_2" id="barang-baru">
                             <form action="{{url('/barang/add')}}" method="post">
                                 @csrf
     
-                                <div class="mb-3">
-                                    <label for="idsatuan" class="form-label">Satuan</label>
-                                    <select class="form-select  {{ $errors->get('idsatuan') ? 'is-invalid'  : ''}}"
-                                        name="idsatuan" aria-label="Default select example" required>
-                                        <option>Pilih Satuan</option>
-                                        @foreach ($satuans as $item)
-                                        <option value="{{$item->id}}" {{$item->id == $getSelect ? 'selected' : ''}}>
-                                            {{$item->namasatuan}}
-                                        </option>
-                                        @endforeach
-                                    </select>
-                                </div>
     
                                 <label for="namabarang" class="form-label">Input Nama barang</label>
                                 <div class="mb-3 input-group has-validation">
@@ -126,6 +113,10 @@
                                         required>
                                 </div>
                                 <div class="mb-3">
+                                    <label for="date" class="form-label">Tanggal</label>
+                                    <input type="date" class="form-control">
+                                </div>
+                                <div class="mb-3">
                                     <label for="lokasi" class="form-label">Lokasi</label>
                                     <textarea class="form-control  {{ $errors->get('lokasi') ? 'is-invalid'  : ''}}"
                                         name="lokasi" id="exampleFormControlTextarea1" rows="3"
@@ -139,7 +130,7 @@
                                 </div>
     
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                                <a class='btn btn-warning ml-3' href='{{url("barang/list")}}'>Cancel</a>
+                                <a class='btn btn-warning ml-3' href='{{url("barang-masuk/list")}}'>Cancel</a>
                             </form>
                         </div>
 
@@ -151,6 +142,6 @@
 </div>
 
 @endsection
-{{-- @push('scripts')
+@push('scripts')
     <script src="{{asset('js')}}/main.js" ></script>
-@endpush --}}
+@endpush

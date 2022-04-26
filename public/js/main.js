@@ -25,3 +25,12 @@ $(document).ready(function(){
       $("."+current_raido).show();
     })
 });
+
+//datepicker
+const inputDate = document.getElementById("input-date");
+
+inputDate.addEventListener("focus",function (evt) {
+  if (this.getAttribute("type")==="date") {
+    this.showPicker();
+  }
+});
