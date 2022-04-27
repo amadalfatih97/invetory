@@ -55,13 +55,13 @@
                                 @csrf
     
                                 <div class="mb-3">
-                                    <label for="idbarang" class="form-label">Nama Barang</label>
-                                    <select class="form-select  {{ $errors->get('idbarang') ? 'is-invalid'  : ''}}"
-                                        name="idbarang" aria-label="Default select example"
+                                    <label for="kodebarang" class="form-label">Nama Barang</label>
+                                    <select class="form-select  {{ $errors->get('kodebarang') ? 'is-invalid'  : ''}}"
+                                        name="kodebarang" aria-label="Default select example"
                                          required>
                                         <option>Pilih Barang</option>
                                         @foreach ($barangs as $item)
-                                        <option value="{{$item->id}}" {{$item->id == old('idbarang') ? 'selected' : ''}}>
+                                        <option value="{{$item->kode}}" {{$item->kode == old('kodebarang') ? 'selected' : ''}}>
                                             {{$item->namabarang}}
                                         </option>
                                         @endforeach
@@ -77,7 +77,7 @@
                                 <div class="mb-3">
                                     <label for="tanggalmasuk" class="form-label">Tanggal Masuk</label>
                                     <input type="date" id="input-date" name="tanggalmasuk" 
-                                     class="form-control">
+                                     class="form-control" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                                 <a class='btn btn-warning ml-3' href='{{url("barang-masuk/list")}}'>Cancel</a>
@@ -87,7 +87,11 @@
                             <form action="{{url('/barang/add')}}" method="post">
                                 @csrf
     
-    
+                                <label for="kode" class="form-label">Kode barang</label>
+                                <div class="mb-3 input-group has-validation">
+                                    <input type="text" value="{{'INV0'.$last}}" class="form-control" 
+                                    id="exampleInputbarang" name="kode" readonly required>
+                                </div>
                                 <label for="namabarang" class="form-label">Input Nama barang</label>
                                 <div class="mb-3 input-group has-validation">
                                     <input type="text" value="{{old('namabarang')}}" class="form-control 

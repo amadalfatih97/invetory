@@ -33,8 +33,14 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card p-3">
+                    
                     <form action="{{url('/barang/add')}}" method="post">
                         @csrf
+                        <label for="kode" class="form-label">Kode barang</label>
+                        <div class="mb-3 input-group has-validation">
+                            <input type="text" value="{{'INV0'.$last}}" class="form-control" 
+                            id="exampleInputbarang" name="kode" readonly required>
+                        </div>
                         <label for="namabarang" class="form-label">Input Nama barang</label>
                         <div class="mb-3 input-group has-validation">
                             <input type="text" value="{{old('namabarang')}}" class="form-control 

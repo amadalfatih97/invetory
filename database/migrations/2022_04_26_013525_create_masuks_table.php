@@ -15,7 +15,7 @@ class CreateMasuksTable extends Migration
     {
         Schema::create('masuks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('idbarang',3);
+            $table->string('kodebarang',12);
             $table->integer('qty')->lenght(4)->unsigned();
             $table->date('tanggalmasuk');
             $table->timestamps();

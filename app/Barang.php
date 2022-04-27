@@ -8,6 +8,6 @@ class Barang extends Model
 {
     //
     protected $fillable = [
-        'namabarang','idsatuan','stok','lokasi','ket' 
+        'kode','namabarang','idsatuan','stok','lokasi','ket' 
     ];//field table database
 }

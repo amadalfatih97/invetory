@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class masuk extends Model
 {
     protected $fillable=[
-        'idbarang','qty','tanggalmasuk'
+        'kodebarang','qty','tanggalmasuk'
     ];
 }

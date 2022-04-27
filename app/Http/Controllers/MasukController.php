@@ -16,8 +16,8 @@ class MasukController extends Controller
         // $barangs = Barang::all();
         // $barangs = Barang::paginate(2);
         $masuks = DB::table('masuks')
-        ->select('masuks.id','idbarang','namabarang', 'namasatuan', 'qty', 'tanggalmasuk')
-        ->rightJoin('barangs', 'masuks.idbarang', '=', 'barangs.id')
+        ->select('masuks.id','kodebarang','namabarang', 'namasatuan', 'qty', 'tanggalmasuk')
+        ->rightJoin('barangs', 'masuks.kodebarang', '=', 'barangs.kode')
         ->rightJoin('satuans', 'barangs.idsatuan', '=', 'satuans.id')
         ->where('namabarang', 'LIKE', '%'.$keyword.'%')
         ->orderBy('masuks.tanggalmasuk','desc')
@@ -30,30 +30,38 @@ class MasukController extends Controller
     public function barangmasuk(Request $request){
         $satuans = satuan::all();
         $barangs = Barang::all();
-        return view('masuk.input', compact('satuans','barangs'));
+        $data = DB::table('barangs')->latest('id')->first();
+        $last = isset($data->id) ? $data->id : 0;
+        return view('masuk.input', compact('satuans','barangs','last'));
     }
 
     //proses input brang masuk
     public function prosesInput(Request $request){
         /* validation */
         $request->validate([
-            'idbarang' => 'required|max:3',
+            'kodebarang' => 'required|max:12',
             'qty' => 'required|max:4',
             'tanggalmasuk' => 'required',
         ]);
-        $idbarang = $request->input('idbarang');
+        $kodebarang = $request->input('kodebarang');
         
         /* proses input */
         $masuk = new masuk([
             /* database                      namefield */
-            'idbarang'=> $idbarang,
+            'kodebarang'=> $kodebarang,
             'qty'=> $request->input('qty'),
             'tanggalmasuk'=> $request->input('tanggalmasuk'),
         ]);
-        $barang = barang::find($idbarang);
+        /* $barang = DB::table('barangs')
+                    ->where('kode', '=', $kodebarang)
+                    ->first(); */
+        
+        $barang = Barang::where('kode', $kodebarang)->firstOrFail();
+        // ->update(['stok' => + 2]);
         $updateStok= ($barang->stok) + ($request->input('qty'));
-        $barang->stok = $updateStok ;
-        $barang->save();
+        // $barang->stok = $updateStok ;
+        // $barang->save();
+        $barang->update(['stok' => $updateStok]);
         $masuk->save();
         return redirect('/barang-masuk/list')->with('success','data berhasil disimpan!');
     }

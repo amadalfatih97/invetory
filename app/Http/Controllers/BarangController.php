@@ -27,18 +27,33 @@ class BarangController extends Controller
     }
     
     public function join(){
-        $data = DB::table('barangs')
-        ->select('barangs.id','namabarang', 'namasatuan', 'stok')
-        ->rightJoin('satuans', 'barangs.idsatuan', '=', 'satuans.id')
-            ->where('namabarang', 'LIKE', '%pul%')
-            ->orderBy('barangs.namabarang','desc')
-            ->get();
-        echo($data);
+        // $data = DB::table('barangs')->latest('id')->first();
+        // $last = isset($data->id) ? $data->id : 0;
+        // ->select('barangs.id','namabarang', 'namasatuan', 'stok')
+        // ->rightJoin('satuans', 'barangs.idsatuan', '=', 'satuans.id')
+        //     ->where('namabarang', 'LIKE', '%pul%')
+        //     ->orderBy('barangs.namabarang','desc')
+        //     ->get();
+        // echo($data);
+        $kodebarang='INV00';
+        $barang = Barang::where('kode', $kodebarang)->firstOrFail();;
+        $barang->update(['stok' => 5]);
+        // $barang = DB::table('barangs')
+        // ->where('kode', '=', $kodebarang);
+        $barang->update(['stok' => $barang->stok + 10]);
+        // ->first();
+        $barang2 = barang::find(1);
+        return response()->json($barang, 200);
+        // dd($data);
     }
 
     public function input(Request $request){
-        $satuans = satuan::all();
-        return view('barang.input', compact('satuans'));
+        $satuans = DB::table('satuans')
+                    ->orderBy('namasatuan','asc')
+                    ->get();
+        $data = DB::table('barangs')->latest('id')->first();
+        $last = isset($data->id) ? $data->id : 0;
+        return view('barang.input', compact('satuans','last'));
     }
 
     public function prosesInput(Request $request){
@@ -55,17 +70,18 @@ class BarangController extends Controller
         $barang = new Barang([
             /* database                      namefield */
             'namabarang'=> $request->input('namabarang'),
+            'kode'=> $request->input('kode'),
             'idsatuan'=> $request->input('idsatuan'),
             'stok'=> $request->input('stok'),
             'lokasi'=> $request->input('lokasi'),
             'ket'=> $request->input('ket'),
         ]);
-        $barang->save();
         $masuk = new masuk([
-            'idbarang' => $barang->id,
+            'kodebarang' => $request->input('kode'),
             'qty'=> $request->input('stok'),
             'tanggalmasuk'=>$request->input('tanggalmasuk'),
         ]);
+        $barang->save();
         $masuk->save();
         return redirect('/barang/list')->with('success','data berhasil disimpan!');
     }
