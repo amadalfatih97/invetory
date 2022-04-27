@@ -18,8 +18,8 @@ class CreateBarangsTable extends Migration
             $table->string('namabarang',30);
             $table->string('idsatuan',10);
             $table->integer('stok')->lenght(10)->unsigned();
-            $table->string('lokasi');
-            $table->string('ket');
+            $table->string('lokasi',100);
+            $table->text('ket');
             $table->timestamps();
         });
     }

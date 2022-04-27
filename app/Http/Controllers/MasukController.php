@@ -55,7 +55,7 @@ class MasukController extends Controller
         $barang->stok = $updateStok ;
         $barang->save();
         $masuk->save();
-        return redirect('/barang/list')->with('success','data berhasil disimpan!');
+        return redirect('/barang-masuk/list')->with('success','data berhasil disimpan!');
     }
 
     public function dataById($id){

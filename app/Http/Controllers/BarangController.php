@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Barang;
 use App\satuan;
+use App\masuk;
 class BarangController extends Controller
 {
     public function index(Request $request){
@@ -60,6 +61,12 @@ class BarangController extends Controller
             'ket'=> $request->input('ket'),
         ]);
         $barang->save();
+        $masuk = new masuk([
+            'idbarang' => $barang->id,
+            'qty'=> $request->input('stok'),
+            'tanggalmasuk'=>$request->input('tanggalmasuk'),
+        ]);
+        $masuk->save();
         return redirect('/barang/list')->with('success','data berhasil disimpan!');
     }
 

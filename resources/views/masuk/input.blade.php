@@ -113,8 +113,9 @@
                                         required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="date" class="form-label">Tanggal</label>
-                                    <input type="date" class="form-control">
+                                    <label for="tanggalmasuk" class="form-label">Tanggal Masuk</label>
+                                    <input type="date" id="input-date" name="tanggalmasuk" 
+                                     class="form-control" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="lokasi" class="form-label">Lokasi</label>

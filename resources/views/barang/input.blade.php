@@ -59,6 +59,11 @@
                             {{ $errors->get('stok') ? 'is-invalid'  : ''}}" id="exampleInputstok" name="stok" required>
                         </div>
                         <div class="mb-3">
+                            <label for="tanggalmasuk" class="form-label">Tanggal Masuk</label>
+                            <input type="date" id="input-date" name="tanggalmasuk" 
+                             class="form-control" required>
+                        </div>
+                        <div class="mb-3">
                             <label for="lokasi" class="form-label">Lokasi</label>
                             <textarea class="form-control  {{ $errors->get('lokasi') ? 'is-invalid'  : ''}}"
                                 name="lokasi" id="exampleFormControlTextarea1" rows="3"
@@ -81,3 +86,6 @@
 </div>
 
 @endsection
+@push('scripts')
+    <script src="{{asset('js')}}/main.js" ></script>
+@endpush
