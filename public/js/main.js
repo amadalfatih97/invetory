@@ -29,8 +29,11 @@ $(document).ready(function(){
 //datepicker
 const inputDate = document.getElementById("input-date");
 
+// event click
 inputDate.addEventListener("focus",function (evt) {
   if (this.getAttribute("type")==="date") {
     this.showPicker();
   }
 });
+// set today
+inputDate.value=(new Date()).toISOString().substr(0,10);
