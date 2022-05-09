@@ -13,4 +13,10 @@ class KeluarController extends Controller
         $barangs = Barang::all();
         return view('keluar.input', compact('barangs'));
     }
+
+    /* find stok */
+    public function findstok(Request $request){
+        $stok=Barang::select('stok')->where('kode', $request->id)->first();
+        return response()->json($stok,200);
+    }
 }

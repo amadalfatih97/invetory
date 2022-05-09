@@ -1,7 +1,5 @@
 /* <script> */
 console.log('js has successfuly load');
-// alert('hello world')
-// https://www.youtube.com/watch?v=PsUHaQ3iSts
 // function tipeinput(val){
 //     if (val == 0) {
 //         document.getElementById("barang-baru").style.display="block";

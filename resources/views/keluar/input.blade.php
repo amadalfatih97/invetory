@@ -46,7 +46,7 @@
                                 <div class="row">
                                     <div class="col-md-8 col-sm-12">
                                         <label for="kodebarang" class="form-label">Nama Barang</label>
-                                        <select class="form-select  {{ $errors->get('kodebarang') ? 'is-invalid'  : ''}}"
+                                        <select class="form-select select-barang {{ $errors->get('kodebarang') ? 'is-invalid'  : ''}}"
                                             name="kodebarang" aria-label="Default select example" required>
                                             <option>Pilih Barang</option>
                                             @foreach ($barangs as $item)
@@ -59,15 +59,15 @@
                                     </div>
                                     <div class="col-md-4 col-sm-12">
                                         <label for="stock" class="form-label">Ready</label>
-                                        <input type="text" name="stock" readonly class="form-control" id="">
+                                        <input type="text" name="stock" readonly class="form-control stok-ready" id="stok-ready">
                                     </div>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="qty" class="form-label">Quantity</label>
                                 <input type="number" value="{{old('qty')}}" class="form-control  
-                                    {{ $errors->get('qty') ? 'is-invalid'  : ''}}" id="exampleInputstok" name="qty"
-                                    required>
+                                    {{ $errors->get('qty') ? 'is-invalid'  : ''}}" max="5" min="1"
+                                    id="exampleInputstok input-qty" name="qty" required>
                             </div>
 
                             
