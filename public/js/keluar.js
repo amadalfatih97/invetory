@@ -2,13 +2,23 @@
 $('form').submit(function (e) {
     e.preventDefault();
     let value= $(this).serializeArray();
-    value.forEach((item,index) => {
-        $("submitted").append(item.name + " " + item.value + "<br>");
-    });
-    let datas = localStorage.getItem("data");
-    datas.push(value);
+    let storeData ={
+        kodebrg :'',
+        qty: 0
+    }
+    let datas = JSON.parse(localStorage.getItem("data"));
+    // if (!datas) {
+    //     datas = storeData;
+    // }
+    storeData.kodebrg = value[2].value;
+    storeData.qty = parseInt(value[4].value);
+    // value.forEach((item,index) => {
+        // $("submitted").append(item.name + " " + item.value + "<br>");
+    // });
+    // datas.push(storeData)
     console.log(datas);
-    localStorage.setItem("data",JSON.stringify(value));
+    
+    // localStorage.setItem("data",JSON.stringify(value));
     console.log('input success');
 });
 
@@ -37,3 +47,4 @@ $(document).on('change','.select-barang',function() {
         }
     });
 });
+
