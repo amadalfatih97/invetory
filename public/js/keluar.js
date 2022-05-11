@@ -1,50 +1,78 @@
 /* save data to local storage */
-$('form').submit(function (e) {
+// showData();
+
+$('form').submit(async function (e) {
     e.preventDefault();
-    let value= $(this).serializeArray();
-    let storeData ={
-        kodebrg :'',
+    let value = $(this).serializeArray();
+    let storeData = {
+        kodebrg: '',
         qty: 0
     }
-    let datas = JSON.parse(localStorage.getItem("data"));
-    // if (!datas) {
-    //     datas = storeData;
-    // }
-    storeData.kodebrg = value[2].value;
-    storeData.qty = parseInt(value[4].value);
+    let datas = new Array();
+    datas = await JSON.parse(localStorage.getItem("items")) ?
+        JSON.parse(localStorage.getItem("items")) : [];
+
+    storeData.kodebrg = await value[2].value;
+    storeData.qty = await parseInt(value[4].value);
     // value.forEach((item,index) => {
-        // $("submitted").append(item.name + " " + item.value + "<br>");
+    // $("submitted").append(item.name + " " + item.value + "<br>");
     // });
-    // datas.push(storeData)
-    console.log(datas);
-    
-    // localStorage.setItem("data",JSON.stringify(value));
-    console.log('input success');
+
+    var exists = 0;
+
+    for (var i = 0; i < datas.length; i++) {
+        if (datas[i].kodebrg == storeData.kodebrg) {
+            datas[i].qty = storeData.qty;
+            exists = 1;
+        }
+    }
+
+    if (exists === 0)
+        datas.push(storeData);
+
+    localStorage.setItem("items", JSON.stringify(datas));
+    // showData();
 });
 
 /* slect qty */
-$(document).on('change','.select-barang',function() {
-    let prod_id=$(this).val();
+$(document).on('change', '.select-barang', function () {
+    let prod_id = $(this).val();
     var a = $(this).parent();
     // console.log(prod_id);
-    var op="";
+    var op = "";
     $.ajax({
-        type:'get',
-        url:"/findstok",
-        data:{'id':prod_id},
-        dataType:'json',
-        success:function (data) {
+        type: 'get',
+        url: "/findstok",
+        data: {
+            'id': prod_id
+        },
+        dataType: 'json',
+        success: function (data) {
             // console.log("stok");
             // console.log(data.stok);
             /* stok-ready:classs  */
             // a.find('.stok-ready').val(data.stok);
             document.getElementById("stok-ready").value = data.stok;
-            document.getElementById("input-qty").max = data.stok;
+            // document.getElementById("input-qty").max = data.stok;
 
         },
-        error:function () {
-            
+        error: function () {
+
         }
     });
 });
+// https://www.youtube.com/watch?v=aAuEKEi3R8Y
+// function showData() {
+//     document.getElementById("show-items").innerHTML = "";
+//     let item_records = new Array();
+//     item_records = JSON.parse(localStorage.getItem("items")) ? JSON.parse(localStorage.getItem("items")) : []
+//     if (item_records) {
+//         for (let i = 0; i < item_records.length; i++) {
+//             let addDiv = document.createElement('div');
+//             addDiv.className = "row";
+//             addDiv.innerHTML = '  <div class="col-sm-4" style="padding: 10px;">' + item_records[i].kodebrg + '</div><div class="col-sm-4" style="padding: 10px;">' + item_records[i].qty + '</div>';
+//             document.getElementById("show-items").appendChild(addDiv);
 
+//         }
+//     }
+// }

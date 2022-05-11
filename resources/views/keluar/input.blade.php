@@ -66,7 +66,7 @@
                             <div class="mb-3">
                                 <label for="qty" class="form-label">Quantity</label>
                                 <input type="number" value="{{old('qty')}}" class="form-control  
-                                    {{ $errors->get('qty') ? 'is-invalid'  : ''}}" max="5" min="1"
+                                    {{ $errors->get('qty') ? 'is-invalid'  : ''}}" min="1"
                                     id="exampleInputstok input-qty" name="qty" required>
                             </div>
 
@@ -74,44 +74,26 @@
                             <button type="submit" class="btn btn-primary">Tambah</button>
                             <a class='btn btn-warning ml-3' href='{{url("barang-keluar/list")}}'>Cancel</a>
                         </form>
-                        <div class="my-3">
-                            <table class="table table-bordered">
+                        <div class="my-3" id=" show-items">
+                            {{-- <table  class="table table-bordered">
                                 <thead>
                                   <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Nama Barang</th>
                                     <th scope="col">Quantity</th>
-                                    <th scope="col">Satuan</th>
+                                    <th scope="col">Aksi</th>
                                   </tr>
                                 </thead>
-                                <tbody>
-                                  <tr>
+                                <tbody id="table">
+                                  <tr id="row-item">
                                     <th scope="row">1</th>
                                     <td>Mark</td>
                                     <td>Otto</td>
                                     <td>@mdo</td>
                                   </tr>
-                                  <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                  </tr>
                                 </tbody>
                               </table>
-                        
+                         --}}
                         </div>
                         <a class='btn btn-success ml-3' href='{{url("barang-keluar/list")}}'>Submit</a>
 
