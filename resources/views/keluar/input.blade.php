@@ -60,6 +60,8 @@
                                     <div class="col-md-4 col-sm-12">
                                         <label for="stock" class="form-label">Ready</label>
                                         <input type="text" name="stock" readonly class="form-control stok-ready" id="stok-ready">
+                                        <input type="text" hidden  name="namabarang" id="namabarang">
+                                        <input type="text" hidden name="satuan" id="satuan">
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +77,7 @@
                             <a class='btn btn-warning ml-3' href='{{url("barang-keluar/list")}}'>Cancel</a>
                         </form>
                         <div class="my-3" id=" show-items">
-                            {{-- <table  class="table table-bordered">
+                            <table  class="table table-bordered">
                                 <thead>
                                   <tr>
                                     <th scope="col">#</th>
@@ -84,16 +86,13 @@
                                     <th scope="col">Aksi</th>
                                   </tr>
                                 </thead>
-                                <tbody id="table">
-                                  <tr id="row-item">
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
+                                <tbody id="rowitem">
+                                  <tr>
+                                    <th colspan="4">Item Kosong</th>
                                   </tr>
                                 </tbody>
                               </table>
-                         --}}
+                        
                         </div>
                         <a class='btn btn-success ml-3' href='{{url("barang-keluar/list")}}'>Submit</a>
 

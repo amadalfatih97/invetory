@@ -1,19 +1,29 @@
 /* save data to local storage */
-// showData();
-
+window.onload=()=>{
+    let items = JSON.parse(localStorage.getItem("items")) ?
+                JSON.parse(localStorage.getItem("items")) : null
+    
+    if (items) {
+        loadTable(items)
+    }
+};
 $('form').submit(async function (e) {
     e.preventDefault();
     let value = $(this).serializeArray();
     let storeData = {
         kodebrg: '',
-        qty: 0
+        nmabarang:'',
+        qty: 0,
+        satuan:''
     }
     let datas = new Array();
     datas = await JSON.parse(localStorage.getItem("items")) ?
         JSON.parse(localStorage.getItem("items")) : [];
 
     storeData.kodebrg = await value[2].value;
-    storeData.qty = await parseInt(value[4].value);
+    storeData.nmabarang = await (value[4].value);
+    storeData.satuan = await (value[5].value);
+    storeData.qty = await parseInt(value[6].value);
     // value.forEach((item,index) => {
     // $("submitted").append(item.name + " " + item.value + "<br>");
     // });
@@ -31,14 +41,13 @@ $('form').submit(async function (e) {
         datas.push(storeData);
 
     localStorage.setItem("items", JSON.stringify(datas));
-    // showData();
+    loadTable(datas);
 });
 
 /* slect qty */
 $(document).on('change', '.select-barang', function () {
     let prod_id = $(this).val();
     var a = $(this).parent();
-    // console.log(prod_id);
     var op = "";
     $.ajax({
         type: 'get',
@@ -48,11 +57,11 @@ $(document).on('change', '.select-barang', function () {
         },
         dataType: 'json',
         success: function (data) {
-            // console.log("stok");
-            // console.log(data.stok);
             /* stok-ready:classs  */
             // a.find('.stok-ready').val(data.stok);
             document.getElementById("stok-ready").value = data.stok;
+            document.getElementById("namabarang").value = data.namabarang;
+            document.getElementById("satuan").value = data.namasatuan;
             // document.getElementById("input-qty").max = data.stok;
 
         },
@@ -61,18 +70,15 @@ $(document).on('change', '.select-barang', function () {
         }
     });
 });
-// https://www.youtube.com/watch?v=aAuEKEi3R8Y
-// function showData() {
-//     document.getElementById("show-items").innerHTML = "";
-//     let item_records = new Array();
-//     item_records = JSON.parse(localStorage.getItem("items")) ? JSON.parse(localStorage.getItem("items")) : []
-//     if (item_records) {
-//         for (let i = 0; i < item_records.length; i++) {
-//             let addDiv = document.createElement('div');
-//             addDiv.className = "row";
-//             addDiv.innerHTML = '  <div class="col-sm-4" style="padding: 10px;">' + item_records[i].kodebrg + '</div><div class="col-sm-4" style="padding: 10px;">' + item_records[i].qty + '</div>';
-//             document.getElementById("show-items").appendChild(addDiv);
 
-//         }
-//     }
-// }
+function loadTable(items){
+    const tableBody = document.getElementById('rowitem');
+    let dataHtml = '';
+    items.forEach((el,i) => {
+        dataHtml += `<tr><td>${i+1}</td><td>${el.nmabarang}</td><td>${el.qty} ${el.satuan}</td><td></td></tr>`
+    });
+        
+    tableBody.innerHTML = dataHtml;
+
+}
+

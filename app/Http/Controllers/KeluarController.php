@@ -16,7 +16,12 @@ class KeluarController extends Controller
 
     /* find stok */
     public function findstok(Request $request){
-        $stok=Barang::select('stok')->where('kode', $request->id)->first();
-        return response()->json($stok,200);
+        // $stok=Barang::select('stok')->where('kode', $request->id)->first();
+        $detail=Barang::select('kode','namabarang','namasatuan','stok')
+        ->rightJoin('satuans', 'barangs.idsatuan', '=', 'satuans.id')
+        ->where('kode', 'LIKE', $request->id)
+        ->get()
+        ->first();
+        return response()->json($detail,200);
     }
 }
