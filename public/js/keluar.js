@@ -71,14 +71,30 @@ $(document).on('change', '.select-barang', function () {
     });
 });
 
+/* load data table */
 function loadTable(items){
     const tableBody = document.getElementById('rowitem');
     let dataHtml = '';
-    items.forEach((el,i) => {
-        dataHtml += `<tr><td>${i+1}</td><td>${el.nmabarang}</td><td>${el.qty} ${el.satuan}</td><td></td></tr>`
-    });
+    if (items) {
+        items.forEach((el,i) => {
+            dataHtml += `<tr><td>${i+1}</td><td>${el.nmabarang}</td><td>${el.qty} ${el.satuan}</td><td><i class="btn btn-outline-danger bi bi-trash" onclick="remove(${i})"></i></td></tr>`
+        });
+    }
         
     tableBody.innerHTML = dataHtml;
 
 }
 
+/* clear item by id */
+async function remove(i){
+    let items = await JSON.parse(localStorage.getItem("items"));
+    await items.splice(i,1);
+    localStorage.setItem("items", JSON.stringify(items));
+    loadTable(items);
+}
+
+//* clear all items */
+$(document).on('click','#clear-storage',function(){
+    localStorage.removeItem('items');
+    loadTable(null)
+})
