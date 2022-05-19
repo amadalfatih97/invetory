@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Barang;
+use App\transaksi;
 
 class KeluarController extends Controller
 {
@@ -24,4 +25,5 @@ class KeluarController extends Controller
         ->first();
         return response()->json($detail,200);
     }
+
 }

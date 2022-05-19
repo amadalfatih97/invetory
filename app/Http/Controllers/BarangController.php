@@ -17,6 +17,7 @@ class BarangController extends Controller
         ->select('barangs.id','namabarang', 'namasatuan', 'stok', 'lokasi', 'ket')
         ->rightJoin('satuans', 'barangs.idsatuan', '=', 'satuans.id')
         ->where('namabarang', 'LIKE', '%'.$keyword.'%')
+        ->where('barangs.aktif', '=', '1')
         ->orderBy('barangs.namabarang','asc')
         ->get();
 
@@ -27,23 +28,18 @@ class BarangController extends Controller
     }
     
     public function join(){
-        // $data = DB::table('barangs')->latest('id')->first();
-        // $last = isset($data->id) ? $data->id : 0;
-        // ->select('barangs.id','namabarang', 'namasatuan', 'stok')
-        // ->rightJoin('satuans', 'barangs.idsatuan', '=', 'satuans.id')
-        //     ->where('namabarang', 'LIKE', '%pul%')
-        //     ->orderBy('barangs.namabarang','desc')
-        //     ->get();
-        // echo($data);
-        $kodebarang='INV00';
+        
+        /* $kodebarang='INV00';
         $barang = Barang::where('kode', $kodebarang)->firstOrFail();;
-        $barang->update(['stok' => 5]);
-        // $barang = DB::table('barangs')
-        // ->where('kode', '=', $kodebarang);
-        $barang->update(['stok' => $barang->stok + 10]);
-        // ->first();
-        $barang2 = barang::find(1);
-        return response()->json($barang, 200);
+        $barang->update(['stok' => 5]); */
+        date_default_timezone_set('Asia/Jakarta');
+        // $barang2 = barang::find(1);
+        $date = date('d-m-y H:i:s');//8/29/2011 11:16:12 AM
+        // $dt = new DateTime('8/29/2011 11:16:12 AM');
+
+        // $date = $dt->format('m/d/Y');
+        // $time = $dt->format('H:i:s');
+        return response()->json($date, 200);
         // dd($data);
     }
 
@@ -117,7 +113,9 @@ class BarangController extends Controller
     public function prosesDelete($id){
         // return $id;
         $barang = Barang::find($id);
-        $barang->delete();
+        // $barang->delete();
+        $barang->aktif = 0;
+        $barang->save();
         return redirect('/barang/list')->with('success','data berhasil dihapus!');;
     }
 

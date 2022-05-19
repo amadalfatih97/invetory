@@ -98,3 +98,21 @@ $(document).on('click','#clear-storage',function(){
     localStorage.removeItem('items');
     loadTable(null)
 })
+
+$(document).on('click','#submit',function(){
+    let tgl = document.getElementById("input-date").value;
+    $.ajax({
+        type: 'post',
+        url: "/barang-keluar/add",
+        data: {
+            'tanggalkeluar': tgl
+        },
+        dataType: 'json',
+        success: function (data) {
+            
+        },
+        error: function () {
+
+        }
+    });
+})

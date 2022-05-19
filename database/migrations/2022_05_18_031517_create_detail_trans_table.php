@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSatuansTable extends Migration
+class CreateDetailTransTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateSatuansTable extends Migration
      */
     public function up()
     {
-        Schema::create('satuans', function (Blueprint $table) {
+        Schema::create('detail_trans', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('namasatuan',30);
-            $table->integer('aktif')->lenght(1)->default(1)->unsigned();
+            $table->string('trans_fk',12);
+            $table->string('barang_fk',12);
+            $table->integer('quantity')->lenght(3);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateSatuansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('satuans');
+        Schema::dropIfExists('detail_trans');
     }
 }

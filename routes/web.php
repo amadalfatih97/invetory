@@ -28,6 +28,7 @@ Route::get('/join', 'BarangController@join');
 
 Route::get('/barang-keluar/add', 'KeluarController@barangkeluar')->name('barangkeluar');
 Route::get('/findstok', 'KeluarController@findstok')->name('findstok');
+Route::post('/barang-keluar/add', 'TransaksiController@prosesInput');
 
 Route::get('/satuan/list', 'SatuanController@index');
 Route::get('/satuan/add', 'SatuanController@input');

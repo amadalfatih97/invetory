@@ -9,11 +9,13 @@ class SatuanController extends Controller
 {
     public function index(Request $request){
         $keyword = $request->get('key');
-        $satuans = satuan::all();
+        // $satuans = satuan::where("aktif","=","1")->get();
 
-        if ($keyword) {
-            $satuans = satuan::where("namasatuan","LIKE","%$keyword%")->get();
-        }
+        // if ($keyword) {
+            $satuans = satuan::where("namasatuan","LIKE","%$keyword%")
+            ->where("aktif","=","1")
+            ->get();
+        // }
         return view('satuan.list',compact('satuans'));
     }
 
@@ -65,7 +67,9 @@ class SatuanController extends Controller
     public function prosesDelete($id){
         // return $id;
         $satuan = satuan::find($id);
-        $satuan->delete();
+        $satuan->aktif = 0;
+        $satuan->save();
+        // $satuan->delete();
         return redirect('/satuan/list')->with('success','data berhasil dihapus!');;
     }
 }

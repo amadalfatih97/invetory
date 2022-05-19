@@ -94,7 +94,7 @@
                               </table>
                         
                         </div>
-                        <a class='btn btn-success ml-3' href='{{url("barang-keluar/list")}}'>Submit</a>
+                        <a class='btn btn-success ml-3' id='submit'>Submit</a>
                         <a class='btn btn-danger ml-3' id="clear-storage">Clear</a>
 
                     </div>

@@ -56,7 +56,7 @@
     
                                 <div class="mb-3">
                                     <label for="kodebarang" class="form-label">Nama Barang</label>
-                                    <select class="form-select  {{ $errors->get('kodebarang') ? 'is-invalid'  : ''}}"
+                                    <select {{count($barangs) < 1 ? 'disabled' : ''}} class="form-select  {{ $errors->get('kodebarang') ? 'is-invalid'  : ''}}"
                                         name="kodebarang" aria-label="Default select example"
                                          required>
                                         <option>Pilih Barang</option>
@@ -71,15 +71,15 @@
                                     <label for="qty" class="form-label">Quantity</label>
                                     <input type="number" value="{{old('qty')}}" class="form-control  
                                     {{ $errors->get('qty') ? 'is-invalid'  : ''}}" id="exampleInputstok" name="qty"
-                                        required>
+                                    {{count($barangs) < 1 ? 'disabled' : ''}}  required>
                                 </div>
     
                                 <div class="mb-3">
                                     <label for="tanggalmasuk" class="form-label">Tanggal Masuk</label>
-                                    <input type="date" id="input-date" name="tanggalmasuk" 
-                                     class="form-control" required>
+                                    <input {{count($barangs) < 1 ? 'disabled' : ''}} type="date" id="input-date" name="tanggalmasuk" 
+                                    max="<?= date('Y-m-d'); ?>" class="form-control" required>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button {{count($barangs) < 1 ? 'disabled' : ''}} type="submit" class="btn btn-primary">Submit</button>
                                 <a class='btn btn-warning ml-3' href='{{url("barang-masuk/list")}}'>Cancel</a>
                             </form>
                         </div>
@@ -119,7 +119,7 @@
                                 <div class="mb-3">
                                     <label for="tanggalmasuk" class="form-label">Tanggal Masuk</label>
                                     <input type="date" id="input-date" name="tanggalmasuk" 
-                                     class="form-control" required>
+                                    max="<?= date('Y-m-d'); ?>" class="form-control" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="lokasi" class="form-label">Lokasi</label>
@@ -133,8 +133,7 @@
                                         {{ $errors->get('ket') ? 'is-invalid'  : ''}}" name="ket"
                                         id="exampleFormControlTextarea1" rows="3">{{old('ket')}} </textarea>
                                 </div>
-    
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button  type="submit" class="btn btn-primary">Submit</button>
                                 <a class='btn btn-warning ml-3' href='{{url("barang-masuk/list")}}'>Cancel</a>
                             </form>
                         </div>
