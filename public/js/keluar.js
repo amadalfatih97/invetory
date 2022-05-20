@@ -7,9 +7,11 @@ window.onload=()=>{
         loadTable(items)
     }
 };
-$('form').submit(async function (e) {
-    e.preventDefault();
-    let value = $(this).serializeArray();
+
+/* aksi button add */
+$(document).on('click','#add',async function(){
+    // console.log($('#select-barang').find('option:selected').text());
+    let tgl = document.getElementById("input-date").value;
     let storeData = {
         kodebrg: '',
         nmabarang:'',
@@ -20,13 +22,10 @@ $('form').submit(async function (e) {
     datas = await JSON.parse(localStorage.getItem("items")) ?
         JSON.parse(localStorage.getItem("items")) : [];
 
-    storeData.kodebrg = await value[2].value;
-    storeData.nmabarang = await (value[4].value);
-    storeData.satuan = await (value[5].value);
-    storeData.qty = await parseInt(value[6].value);
-    // value.forEach((item,index) => {
-    // $("submitted").append(item.name + " " + item.value + "<br>");
-    // });
+    storeData.kodebrg = await $( "#select-barang" ).val();
+    storeData.nmabarang = await $( "#select-barang option:selected" ).text();
+    storeData.satuan = await document.getElementById("satuan").value;
+    storeData.qty = await document.getElementById("input-qty").value;
 
     var exists = 0;
 
@@ -43,6 +42,43 @@ $('form').submit(async function (e) {
     localStorage.setItem("items", JSON.stringify(datas));
     loadTable(datas);
 });
+
+// $('form').submit(async function (e) {
+//     e.preventDefault();
+//     let value = $(this).serializeArray();
+//     let storeData = {
+//         kodebrg: '',
+//         nmabarang:'',
+//         qty: 0,
+//         satuan:''
+//     }
+//     let datas = new Array();
+//     datas = await JSON.parse(localStorage.getItem("items")) ?
+//         JSON.parse(localStorage.getItem("items")) : [];
+
+//     storeData.kodebrg = await value[2].value;
+//     storeData.nmabarang = await (value[4].value);
+//     storeData.satuan = await (value[5].value);
+//     storeData.qty = await parseInt(value[6].value);
+//     /* // value.forEach((item,index) => {
+//     // $("submitted").append(item.name + " " + item.value + "<br>");
+//     // }); */
+
+//     var exists = 0;
+
+//     for (var i = 0; i < datas.length; i++) {
+//         if (datas[i].kodebrg == storeData.kodebrg) {
+//             datas[i].qty = storeData.qty;
+//             exists = 1;
+//         }
+//     }
+
+//     if (exists === 0)
+//         datas.push(storeData);
+
+//     localStorage.setItem("items", JSON.stringify(datas));
+//     loadTable(datas);
+// });
 
 /* slect qty */
 $(document).on('change', '.select-barang', function () {
@@ -99,20 +135,20 @@ $(document).on('click','#clear-storage',function(){
     loadTable(null)
 })
 
-$(document).on('click','#submit',function(){
-    let tgl = document.getElementById("input-date").value;
-    $.ajax({
-        type: 'post',
-        url: "/barang-keluar/add",
-        data: {
-            'tanggalkeluar': tgl
-        },
-        dataType: 'json',
-        success: function (data) {
+// $(document).on('click','#submit',function(){
+//     let tgl = document.getElementById("input-date").value;
+//     $.ajax({
+//         type: 'post',
+//         url: "/barang-keluar/add",
+//         data: {
+//             'tanggalkeluar': tgl
+//         },
+//         dataType: 'json',
+//         success: function (data) {
             
-        },
-        error: function () {
+//         },
+//         error: function () {
 
-        }
-    });
-})
+//         }
+//     });
+// })
