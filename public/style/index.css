@@ -26,7 +26,10 @@ main{
     margin-top: var(--topNavbarHeight);
 }
 
-
+.item{
+    outline: none;
+    border: none;
+}
 #input-date{
     cursor: pointer;
 }

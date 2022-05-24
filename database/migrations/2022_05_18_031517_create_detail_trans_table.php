@@ -15,7 +15,7 @@ class CreateDetailTransTable extends Migration
     {
         Schema::create('detail_trans', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('trans_fk',12);
+            $table->string('trans_fk',30);
             $table->string('barang_fk',12);
             $table->integer('quantity')->lenght(3);
             $table->timestamps();

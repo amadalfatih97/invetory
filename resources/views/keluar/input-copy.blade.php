@@ -1,5 +1,5 @@
 @extends('master')
-
+{{-- https://helperbyte.com/questions/134971/how-to-get-the-array-from-local-storage-in-php --}}
 @section('main')
 <div class="card py-2 px-2">
     <div class="row">
@@ -66,7 +66,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="qty" class="form-label">Quantity</label>
-                                <input type="number" class="form-control" min="1" max="0" id="input-qty" name="qty" required>
+                                <input type="number" class="form-control" min="1" id="input-qty" name="qty" required>
                             </div>
                             <button type="button" disabled class="btn btn-primary" id="add">Tambah</button>
                             <a class='btn btn-warning ml-3' href='{{url("barang-keluar/list")}}'>Cancel</a>
@@ -83,15 +83,14 @@
                                         </tr>
                                     </thead>
                                     <tbody id="rowitem">
-                                        <tr>
+                                        {{-- <tr>
                                             <th colspan="4">Item Kosong</th>
-                                        </tr>
-                                        
+                                        </tr> --}}
                                     </tbody>
                                 </table>
                             </div>
-                            <button type="submit" disabled class='btn btn-success ml-3' id='submit'>Submit</button>
-                            {{-- <button type="button" class='btn btn-danger ml-3' id="clear-storage">Clear</button> --}}
+                            <button type="submit" class='btn btn-success ml-3' id='submit'>Submit</button>
+                            <button type="button" class='btn btn-danger ml-3' id="clear-storage">Clear</button>
                         </form>
 
                 </div>

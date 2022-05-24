@@ -1,47 +1,47 @@
 /* save data to local storage */
-window.onload=()=>{
-    let items = JSON.parse(localStorage.getItem("items")) ?
-                JSON.parse(localStorage.getItem("items")) : null
+// window.onload=()=>{
+//     let items = JSON.parse(localStorage.getItem("items")) ?
+//                 JSON.parse(localStorage.getItem("items")) : null
     
-    if (items) {
-        loadTable(items)
-    }
-};
+//     // if (items) {
+//         loadTable(items)
+//     // }
+// };
 
 /* aksi button add */
-$(document).on('click','#add',async function(){
-    // console.log($('#select-barang').find('option:selected').text());
-    let tgl = document.getElementById("input-date").value;
-    let storeData = {
-        kodebrg: '',
-        nmabarang:'',
-        qty: 0,
-        satuan:''
-    }
-    let datas = new Array();
-    datas = await JSON.parse(localStorage.getItem("items")) ?
-        JSON.parse(localStorage.getItem("items")) : [];
+// $(document).on('click','#add',async function(){
+//     // console.log($('#select-barang').find('option:selected').text());
+//     let tgl = document.getElementById("input-date").value;
+//     let storeData = {
+//         kodebrg: '',
+//         nmabarang:'',
+//         qty: 0,
+//         satuan:''
+//     }
+//     let datas = new Array();
+//     datas = await JSON.parse(localStorage.getItem("items")) ?
+//         JSON.parse(localStorage.getItem("items")) : [];
 
-    storeData.kodebrg = await $( "#select-barang" ).val();
-    storeData.nmabarang = await $( "#select-barang option:selected" ).text();
-    storeData.satuan = await document.getElementById("satuan").value;
-    storeData.qty = await document.getElementById("input-qty").value;
+//     storeData.kodebrg = await $( "#select-barang" ).val();
+//     storeData.nmabarang = await $( "#select-barang option:selected" ).text();
+//     storeData.satuan = await document.getElementById("satuan").value;
+//     storeData.qty = await document.getElementById("input-qty").value;
 
-    var exists = 0;
+//     var exists = 0;
 
-    for (var i = 0; i < datas.length; i++) {
-        if (datas[i].kodebrg == storeData.kodebrg) {
-            datas[i].qty = storeData.qty;
-            exists = 1;
-        }
-    }
+//     for (var i = 0; i < datas.length; i++) {
+//         if (datas[i].kodebrg == storeData.kodebrg) {
+//             datas[i].qty = storeData.qty;
+//             exists = 1;
+//         }
+//     }
 
-    if (exists === 0)
-        datas.push(storeData);
+//     if (exists === 0)
+//         datas.push(storeData);
 
-    localStorage.setItem("items", JSON.stringify(datas));
-    loadTable(datas);
-});
+//     localStorage.setItem("items", JSON.stringify(datas));
+//     loadTable(datas);
+// });
 
 // $('form').submit(async function (e) {
 //     e.preventDefault();
@@ -92,48 +92,61 @@ $(document).on('change', '.select-barang', function () {
             'id': prod_id
         },
         dataType: 'json',
-        success: function (data) {
+        success:async  function (data) {
             /* stok-ready:classs  */
             // a.find('.stok-ready').val(data.stok);
-            document.getElementById("stok-ready").value = data.stok;
-            document.getElementById("namabarang").value = data.namabarang;
-            document.getElementById("satuan").value = data.namasatuan;
-            // document.getElementById("input-qty").max = data.stok;
-
+            document.getElementById("stok-ready").value = await data.stok;
+            document.getElementById("namabarang").value = await data.namabarang;
+            document.getElementById("satuan").value = await data.namasatuan;
+            $('#input-qty').val(0)
+            if (data.stok < 1) {
+                $('#add').prop('disabled', true);
+            }else{
+                $('#add').prop('disabled', false);
+                $('#input-qty').attr({"max": data.stok})
+            }
         },
         error: function () {
-
+            alert('error')
         }
     });
 });
 
 /* load data table */
-function loadTable(items){
-    const tableBody = document.getElementById('rowitem');
-    let dataHtml = '';
-    if (items) {
-        items.forEach((el,i) => {
-            dataHtml += `<tr><td>${i+1}</td><td>${el.nmabarang}</td><td>${el.qty} ${el.satuan}</td><td><i class="btn btn-outline-danger bi bi-trash" onclick="remove(${i})"></i></td></tr>`
-        });
-    }
+// function loadTable(items){
+//     const tableBody = document.getElementById('rowitem');
+//     let dataHtml = '';
+//     if (items) {
+//         items.forEach((el,i) => {
+//             dataHtml += `<tr><td>${i+1}</td><td>${el.nmabarang}</td><td>${el.qty} ${el.satuan}</td><td><i class="btn btn-outline-danger bi bi-trash" onclick="remove(${i})"></i></td></tr>`
+//         });
+//         if (items.length < 1) {
+//             $('#submit').prop('disabled', true);
+//         }else{
+//             $('#submit').prop('disabled', false);
+            
+//         }
+//     }else{
+//         $('#submit').prop('disabled', true);
+//     }
         
-    tableBody.innerHTML = dataHtml;
+//     tableBody.innerHTML = dataHtml;
 
-}
+// }
 
 /* clear item by id */
-async function remove(i){
-    let items = await JSON.parse(localStorage.getItem("items"));
-    await items.splice(i,1);
-    localStorage.setItem("items", JSON.stringify(items));
-    loadTable(items);
-}
+// async function remove(i){
+//     let items = await JSON.parse(localStorage.getItem("items"));
+//     await items.splice(i,1);
+//     localStorage.setItem("items", JSON.stringify(items));
+//     loadTable(items);
+// }
 
 //* clear all items */
-$(document).on('click','#clear-storage',function(){
-    localStorage.removeItem('items');
-    loadTable(null)
-})
+// $(document).on('click','#clear-storage',function(){
+//     localStorage.removeItem('items');
+//     loadTable(null)
+// })
 
 // $(document).on('click','#submit',function(){
 //     let tgl = document.getElementById("input-date").value;
@@ -152,3 +165,80 @@ $(document).on('click','#clear-storage',function(){
 //         }
 //     });
 // })
+/* =============================== */
+
+
+/* aksi button add */
+var datas = new Array();
+$(document).on('click','#add',async function(){
+    // console.log($('#select-barang').find('option:selected').text());
+    let tgl = document.getElementById("input-date").value;
+    let storeData = {
+        kodebrg: '',
+        nmabarang:'',
+        qty: 0,
+        satuan:''
+    }
+    // datas = await JSON.parse(localStorage.getItem("items")) ?
+    //     JSON.parse(localStorage.getItem("items")) : [];
+
+    storeData.kodebrg = await $( "#select-barang" ).val();
+    storeData.nmabarang = await $( "#select-barang option:selected" ).text();
+    storeData.satuan = await document.getElementById("satuan").value;
+    storeData.qty = await document.getElementById("input-qty").value;
+
+    let exists = 0;
+
+    for (let i = 0; i < datas.length; i++) {
+        if (datas[i].kodebrg == storeData.kodebrg) {
+            datas[i].qty = storeData.qty;
+            exists = 1;
+        }
+    }
+
+    if (exists === 0)
+        datas.push(storeData);
+
+    // localStorage.setItem("items", JSON.stringify(datas));
+    loadTable(datas);
+});
+
+/* clear item by id */
+async function remove(i){
+    let items = datas;
+    await datas.splice(i,1);
+    // localStorage.setItem("items", JSON.stringify(items));
+    loadTable(items);
+}
+
+/* load data table */
+function loadTable(items){
+    const tableBody = document.getElementById('rowitem');
+    let dataHtml = '';
+    if (items.length > 0) {
+        items.forEach((el,i) => {
+            dataHtml += `<tr><td>${i+1}</td><td><input type="hidden" value="${el.kodebrg}" name="kodebrg[]"><input type="text" value="${el.nmabarang}" name="" id="width-auto" class="item" readonly></td><td><input type="text" value="${el.qty}" readonly name="qty[]" id="width-auto" class="item" style="width:44px;">${el.satuan}</td><td><i class="btn btn-outline-danger bi bi-trash" onclick="remove(${i})"></i></td></tr>`
+        });
+        $('#submit').prop('disabled', false);
+    }else{
+        $('#submit').prop('disabled', true);
+    }
+    tableBody.innerHTML = dataHtml;
+}
+
+function resizeInput() {
+    $(this).attr('size', $(this).val().length);
+}
+
+$('#width-auto')
+    // event handler
+    .keyup(resizeInput)
+    // resize on page load
+    .each(resizeInput);
+    
+//validate max qty
+$('#input-qty').change(async function(){
+    let max = await parseInt($(this).attr('max'));
+    let qty = $(this).val() > max ? max : $(this).val();
+    $(this).val(qty);
+})

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Barang;
 use App\satuan;
 use App\transaksi;
+use App\detailTrans;
 
 class TransaksiController extends Controller
 {
@@ -28,7 +29,15 @@ class TransaksiController extends Controller
             'type_trans'=> 'out'
         ]);
         $trans->save();
-        // return response()->json($date, 200);
+        foreach ($request->kodebrg as $item => $value) {
+            $datas = array(
+                'trans_fk' => $trans->kode,
+                'barang_fk' => $request->kodebrg[$item],
+                'quantity' => $request->qty[$item]
+            );
+            detailTrans::create($datas);
+        }
+
         return redirect('/barang/list')->with('success','data berhasil keluar!');
     }
 }
