@@ -11,6 +11,19 @@ use App\detailTrans;
 
 class TransaksiController extends Controller
 {
+    /* show barang masuk */
+    public function index(Request $request){
+        $keyword = $request->get('key');
+        $trans = DB::table('detail_trans')
+        ->select('detail_trans.trans_fk','transaksis.tanggal_trans')
+        ->selectRaw('COUNT(detail_trans.trans_fk) AS jumlah')
+        ->leftJoin('transaksis', 'detail_trans.trans_fk', '=', 'transaksis.kode')
+        // ->where('namabarang', 'LIKE', '%'.$keyword.'%')
+        ->groupBy('detail_trans.trans_fk')
+        ->get();
+        // dd($trans);
+        return view('keluar.list',compact('trans'));
+    }
     
     public function prosesInput(Request $request){
         date_default_timezone_set('Asia/Jakarta');
