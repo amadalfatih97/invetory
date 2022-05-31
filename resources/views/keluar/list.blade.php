@@ -45,6 +45,7 @@
                             <th>Tanggal</th>
                             <th>User</th>
                             <th>Jumlah Item</th>
+                            <th>#</th>
                             {{-- <th class="action" colspan=2>Aksi</th> --}}
                         </thead>
                         <tbody>
@@ -56,6 +57,7 @@
                                 <td>{{$data->tanggal_trans}}</td>
                                 <td>{{'$data->namasatuan'}}</td>
                                 <td>{{$data->jumlah}}</td>
+                                <td><a href='{{url("barang-keluar/detail/{$data->trans_fk}")}}'><i class="btn btn-outline-primary bi bi-eye-fill" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat Detail"></i></a></td>
                                 {{-- <td>
                                     <a class="btn btn-outline-primary" href="/barang/{{$data->id}}">Edit</button>
                                 </td>

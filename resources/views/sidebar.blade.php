@@ -42,7 +42,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href='{{url("barang-keluar/add")}}' class="nav-link px-3 ">
+                    <a href='{{url("barang-keluar/list")}}' class="nav-link px-3 ">
                         <span class="me-2"><i class="bi bi-files"></i></span>
                         <span>Barang Keluar</span>
                     </a>

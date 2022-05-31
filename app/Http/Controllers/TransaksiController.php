@@ -24,6 +24,11 @@ class TransaksiController extends Controller
         // dd($trans);
         return view('keluar.list',compact('trans'));
     }
+
+    public function Outdetail($id){
+        $kode = $id;
+        return view('keluar.detail', compact('kode'));
+    }
     
     public function prosesInput(Request $request){
         date_default_timezone_set('Asia/Jakarta');
