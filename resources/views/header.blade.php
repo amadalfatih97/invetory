@@ -7,7 +7,9 @@
             <span class="navbar-toggler-icon" data-bs-target="#offcanvasExample"></span>
         </button>
         {{-- endoffcancvas trigger --}}
-        <a class="navbar-brand fw-bold me-auto" href="#">Navbar</a>
+        <a class="navbar-brand fw-bold me-auto" href="#">                        
+            <img src="{{asset('images/logo-mobile.png')}}" alt="">
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

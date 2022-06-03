@@ -15,15 +15,25 @@
 <div class="pt-3">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                    <p>Kode {{$kode}}</p>
-                    <p>Tanggal</p>
-                    <p>nama user</p>
-            </div>
-            <div class="col-md-12">
-                <div class="card ">
-                    {{-- <hr > --}}
-                    {{-- <div class="container"> --}}
+            <div class="col-md-12 ">
+                <div class="card mx-3 my-3">
+                    <table class=" mx-2 my-3 " width="312px">
+                        <tr>
+                            <td>Kode </td>
+                            <th>{{$trans->kode}}</th>
+                        </tr>
+                        <tr>
+                            <td>Tanggal </td>
+                            <th>{{date('d M Y', strtotime($trans->tanggal_trans))}}</th>
+                        </tr>
+                        <tr>
+                            <td>Nama User </td>
+                            <th>{{$trans->user_fk}}</th>
+                        </tr>
+                    </table>
+                    <hr>
+
+                    <div class="card mx-2 mb-2">
 
                         <table class="table table-striped">
                             <thead>
@@ -32,23 +42,22 @@
                                 <th>Quantity</th>
                                 <th>Satuan</th>
                             </thead>
-                        {{-- </table> --}}
-                    {{-- </div> --}}
-                    {{-- <hr> --}}
-                    {{-- <div class="container-fluid"> --}}
-
-                        {{-- <table width="100%"> --}}
-                            @for ($i = 0; $i < 6; $i++)
+                            @foreach ($detail as $no => $items)
                             <tr>
-                                <td>{{$i}}</td>
-                                <td>namA Item</td>
-                                <td>2</td>
-                                <td>pcs</td>
+                                <td>{{++$no}}</td>
+                                <td>{{$items->namabarang}}</td>
+                                <td>{{$items->quantity}}</td>
+                                <td>{{$items->namasatuan}}</td>
                             </tr>
-                            @endfor
+                            @endforeach
                         </table>
-                    {{-- </div> --}}
-                    {{-- <hr> --}}
+                    </div>
+                    <hr>
+                    <div class="action d-grid gap-2 d-md-flex justify-content-md-end px-3">
+                        <a href='{{url("report/out-detail/{$trans->kode}")}}' target="_blank" class="btn btn-primary me-md-2"><i class="bi bi-printer"></i> Print</a>
+                        <a class='btn btn-outline-warning' href='{{url("barang-keluar/list")}}'><i class="bi bi-x-circle"></i> Close</a>
+                    </div>
+                    <hr>
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@
             <ul class="navbar-nav py-3">
                 <li>
                     <a class="navbar-brand fw-bold me-auto px-3" href="#">
-                        <span>  Navbar </span>
+                        <img src="{{asset('images/logo-mobile.png')}}" alt="">
                     </a>
                 </li>
                 <li>

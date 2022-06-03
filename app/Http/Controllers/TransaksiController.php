@@ -15,7 +15,7 @@ class TransaksiController extends Controller
     public function index(Request $request){
         $keyword = $request->get('key');
         $trans = DB::table('detail_trans')
-        ->select('detail_trans.trans_fk','transaksis.tanggal_trans')
+        ->select('detail_trans.trans_fk','transaksis.tanggal_trans','transaksis.user_fk')
         ->selectRaw('COUNT(detail_trans.trans_fk) AS jumlah')
         ->leftJoin('transaksis', 'detail_trans.trans_fk', '=', 'transaksis.kode')
         // ->where('namabarang', 'LIKE', '%'.$keyword.'%')
@@ -27,7 +27,18 @@ class TransaksiController extends Controller
 
     public function Outdetail($id){
         $kode = $id;
-        return view('keluar.detail', compact('kode'));
+        $trans = transaksi::where('kode', $kode)->firstOrFail();
+        // ->get();
+        
+        $detail = DB::table('detail_trans')
+        ->select('detail_trans.trans_fk','detail_trans.barang_fk','detail_trans.quantity',
+                    'barangs.namabarang','satuans.namasatuan')
+        ->leftJoin('barangs','detail_trans.barang_fk','=','barangs.kode')
+        ->leftJoin('satuans','barangs.idsatuan','=','satuans.id')
+        ->where('detail_trans.trans_fk', 'LIKE', '%'.$kode.'%')
+        ->get();
+        // dd($trans);
+        return view('keluar.detail', compact('trans','detail'));
     }
     
     public function prosesInput(Request $request){
@@ -57,5 +68,21 @@ class TransaksiController extends Controller
         }
 
         return redirect('/barang/list')->with('success','data berhasil keluar!');
+    }
+
+    public function reportOutDetail($id){
+        $kode = $id;
+        $trans = transaksi::where('kode', $kode)->firstOrFail();
+        // ->get();
+        
+        $detail = DB::table('detail_trans')
+        ->select('detail_trans.trans_fk','detail_trans.barang_fk','detail_trans.quantity',
+                    'barangs.namabarang','satuans.namasatuan')
+        ->leftJoin('barangs','detail_trans.barang_fk','=','barangs.kode')
+        ->leftJoin('satuans','barangs.idsatuan','=','satuans.id')
+        ->where('detail_trans.trans_fk', 'LIKE', '%'.$kode.'%')
+        ->get();
+        // dd($trans);
+        return view('keluar.report.detail', compact('trans','detail'));
     }
 }

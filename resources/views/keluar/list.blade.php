@@ -11,14 +11,14 @@
     </div>
 </div>
 <div class="pt-3">
-    <div class="container-fluid">
+    <div class="container-fluid px-4">
         <div class="row">
             <div class="col-md-8 ">
-                <a href="{{url('barang-masuk/add')}}" class="btn btn-success mb-2">input</a>
+                <a href="{{url('barang-keluar/add')}}" class="btn btn-success mb-2">input</a>
             </div>
         
             <div class="col-md-4 ">
-                <form action='{{url("barang-masuk/list")}}' method="GET">
+                <form action='{{url("barang-keluar/list")}}' method="GET">
                     <div class="input-group mb-3">
                         <input name="key" type="text" class="form-control" placeholder="Search" aria-label="Search"
                             aria-describedby="button-addon2" value="{{Request::get('key')}}">
@@ -41,7 +41,7 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <th class="no">No</th>
-                            <th>Kode</th>
+                            {{-- <th>Kode</th> --}}
                             <th>Tanggal</th>
                             <th>User</th>
                             <th>Jumlah Item</th>
@@ -53,11 +53,14 @@
                             @foreach($trans as $data)
                             <tr>
                                 <td>{{$no++}}</td>
-                                <td>{{$data->trans_fk}}</td>
+                                {{-- <td>{{$data->trans_fk}}</td> --}}
                                 <td>{{$data->tanggal_trans}}</td>
-                                <td>{{'$data->namasatuan'}}</td>
-                                <td>{{$data->jumlah}}</td>
-                                <td><a href='{{url("barang-keluar/detail/{$data->trans_fk}")}}'><i class="btn btn-outline-primary bi bi-eye-fill" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat Detail"></i></a></td>
+                                <td>{{$data->user_fk}}</td>
+                                <td>{{$data->jumlah}} jenis item</td>
+                                <td><a class="btn btn-outline-primary " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat Detail"
+                                    href='{{url("barang-keluar/detail/{$data->trans_fk}")}}'>
+                                    <span class="hide-to-mobile">-<<</span><i class="bi bi-eye-fill" ></i><span class="hide-to-mobile">>>-</span>
+                                </a></td>
                                 {{-- <td>
                                     <a class="btn btn-outline-primary" href="/barang/{{$data->id}}">Edit</button>
                                 </td>

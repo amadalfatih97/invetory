@@ -98,12 +98,14 @@ $(document).on('change', '.select-barang', function () {
             document.getElementById("stok-ready").value = await data.stok;
             document.getElementById("namabarang").value = await data.namabarang;
             document.getElementById("satuan").value = await data.namasatuan;
-            $('#input-qty').val(0)
-            if (data.stok < 1) {
+            $('#input-qty').val('')
+            if (data.stok < 1 ) {
+                $('#input-qty').prop('disabled', true)
                 $('#add').prop('disabled', true);
             }else{
-                $('#add').prop('disabled', false);
+                $('#add').prop('disabled', true);
                 $('#input-qty').attr({"max": data.stok})
+                $('#input-qty').prop('disabled', false)
             }
         },
         error: function () {
@@ -241,4 +243,14 @@ $('#input-qty').change(async function(){
     let max = await parseInt($(this).attr('max'));
     let qty = $(this).val() > max ? max : $(this).val();
     $(this).val(qty);
+})
+
+$('#input-qty').on('input',async function(){
+    let max = await parseInt($(this).attr('max'));
+
+    if ($(this).val() < 1 || $(this).val() > max) {
+        $('#add').prop('disabled', true);
+    }else{
+        $('#add').prop('disabled', false);
+    }
 })

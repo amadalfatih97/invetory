@@ -8,6 +8,10 @@
     width: var(--offcanvas-width);
 }
 
+.navbar-brand img{
+    height: 0.8rem;
+}
+
 .sidebar-link{
     display: flex;
     align-items: center;
@@ -33,11 +37,19 @@ main{
 #input-date{
     cursor: pointer;
 }
+
+img,svg{
+    vertical-align: middle;
+}
+
 @media (max-width:991px) {
     .hide-to-mobile{
         display: none;
     }
     
+    .navbar-brand img{
+        height: 1.6rem;
+    }
 }
 
 @media (min-width:992px) {
@@ -48,6 +60,10 @@ main{
     body{
         overflow: auto !important;
         background-color: #EEF2F8;
+    }
+
+    .navbar-brand img{
+        height: 2.5rem;
     }
 
     /* .offcanvas-backdrop::before { */
