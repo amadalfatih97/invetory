@@ -1,10 +1,10 @@
 @extends('master')
 
 @section('main')
-<div class="card py-2 px-2">
+<div class="card container-fluid py-3 px-md-4">
     <div class="row">
         <div class="col-md-6 col-sm-12">
-            <h2>Data Invetory</h2>
+            <strong>Data Invetory</strong>
         </div>
         <div class="col-md-6 col-sm-12 px-3 text-end align-middle align-self-center hide-to-mobile">
             <span class="fst-italic fs-6">Dashboard > data barang
@@ -76,8 +76,8 @@
     
                                 <div class="mb-3">
                                     <label for="tanggalmasuk" class="form-label">Tanggal Masuk</label>
-                                    <input {{count($barangs) < 1 ? 'disabled' : ''}} type="date" id="input-date" name="tanggalmasuk" 
-                                    max="<?= date('Y-m-d'); ?>" class="form-control" required>
+                                    <input {{count($barangs) < 1 ? 'disabled' : ''}} type="text" id="picker" name="tanggalmasuk" 
+                                    class="form-control" required readonly>
                                 </div>
                                 <button {{count($barangs) < 1 ? 'disabled' : ''}} type="submit" class="btn btn-primary">Submit</button>
                                 <a class='btn btn-warning ml-3' href='{{url("barang-masuk/list")}}'>Cancel</a>
@@ -118,8 +118,8 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="tanggalmasuk" class="form-label">Tanggal Masuk</label>
-                                    <input type="date" id="input-date" name="tanggalmasuk" 
-                                    max="<?= date('Y-m-d'); ?>" class="form-control" required>
+                                    <input type="text" id="picker2" readonly name="tanggalmasuk" 
+                                    class="form-control" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="lokasi" class="form-label">Lokasi</label>

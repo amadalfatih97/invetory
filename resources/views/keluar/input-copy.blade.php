@@ -38,7 +38,7 @@
                             {{-- start add item --}}
                             <div class="mb-3">
                                 <label for="tanggalkeluar" class="form-label">Tanggal Keluar</label>
-                                <input type="date" id="input-date" name="tanggalkeluar" max="<?= date('Y-m-d'); ?>"
+                                <input type="text" id="picker" readonly name="tanggalkeluar" 
                                     class="form-control" required>
                             </div>
                             <div class="mb-3">

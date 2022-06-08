@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', 'BarangController@index');
 Route::get('/barang/list', 'BarangController@index');
 Route::get('/barang/add', 'BarangController@input');
 Route::post('/barang/add', 'BarangController@prosesInput');
@@ -31,6 +32,7 @@ Route::get('/findstok', 'KeluarController@findstok')->name('findstok');
 Route::post('/barang-keluar/add', 'TransaksiController@prosesInput');
 Route::get('/barang-keluar/list', 'TransaksiController@index');
 Route::get('/barang-keluar/detail/{id}', 'TransaksiController@Outdetail');
+Route::get('/report/out', 'TransaksiController@reportOut');
 Route::get('/report/out-detail/{id}', 'TransaksiController@reportOutDetail');
 
 Route::get('/satuan/list', 'SatuanController@index');

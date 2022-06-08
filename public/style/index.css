@@ -1,8 +1,9 @@
 
 :root{
     --offcanvas-width:270px;
-    --topNavbarHeight:56px;
+    --topNavbarHeight:65px;
 }
+
 
 .sidebar-nav{
     width: var(--offcanvas-width);
@@ -43,6 +44,9 @@ img,svg{
 }
 
 @media (max-width:991px) {
+    :root{
+        --topNavbarHeight:56px;
+    }
     .hide-to-mobile{
         display: none;
     }

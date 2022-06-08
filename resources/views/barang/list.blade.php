@@ -1,9 +1,9 @@
 @extends('master')
 
 @section('main')
-<div class="card py-2 px-2">
+<div class="card container-fluid py-3 px-md-4">
     <div class="row">
-        <div class="col-md-6 col-sm-12"><h2>Data Invetory</h2></div>
+        <div class="col-md-6 col-sm-12"><strong>Data Invetory</strong></div>
         <div class="col-md-6 col-sm-12 px-3 text-end align-middle align-self-center hide-to-mobile">
             <span class="fst-italic fs-6 text-secondary">Dashboard > Data Barang 
             </span>
@@ -41,11 +41,11 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <th class="no">No</th>
-                            <th>Nama barang</th>
+                            <th>Nama</th>
                             <th>Satuan</th>
                             <th>Stok</th>
-                            <th>Lokasi</th>
-                            <th>Keterangan</th>
+                            {{-- <th>Lokasi</th> --}}
+                            <th>Ket</th>
                             <th class="action" colspan=2>Aksi</th>
                         </thead>
                         <tbody>
@@ -56,16 +56,17 @@
                                 <td>{{$data->namabarang}}</td>
                                 <td>{{$data->namasatuan}}</td>
                                 <td>{{$data->stok}}</td>
-                                <td>{{$data->lokasi}}</td>
+                                {{-- <td>{{$data->lokasi}}</td> --}}
                                 <td>{{$data->ket}}</td>
                                 <td>
-                                    <a class="btn btn-outline-primary" href="/barang/{{$data->id}}">Edit</button>
+                                    <a class="btn btn-outline-primary"  data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom" title="edit data" href="/barang/{{$data->id}}"><i class="bi bi-pencil-square"></i><span class="hide-to-mobile">Edit</span></a>
                                 </td>
                                 <td>
                                     <form action='{{url("barang/delete/{$data->id}")}}' method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-outline-danger" type="submit">Hapus</button>
+                                        <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash"></i><span class="hide-to-mobile">Hapus</span></button>
                                     </form>
                                 </td>
                             </tr>

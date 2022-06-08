@@ -25,7 +25,7 @@ $(document).ready(function(){
 });
 
 //datepicker
-const inputDate = document.getElementById("input-date");
+/* const inputDate = document.getElementById("input-date");
 
 // event click
 inputDate.addEventListener("focus",function (evt) {
@@ -34,4 +34,25 @@ inputDate.addEventListener("focus",function (evt) {
   }
 });
 // set today
-inputDate.value=(new Date()).toISOString().substr(0,10);
+inputDate.value=(new Date()).toISOString().substr(0,10); */
+
+// datepicker
+
+$( function() {
+  $( "#picker" ).datepicker({
+    dateFormat:'yy-m-dd',
+    changeMonth: true,
+    changeYear: true,
+    // minDate: -20,
+    maxDate: "0D",
+    showAnim:'slideDown'
+  });
+  $( "#picker2" ).datepicker({
+    dateFormat:'yy-m-dd',
+    changeMonth: true,
+    changeYear: true,
+    // minDate: -20,
+    maxDate: "0D",
+    showAnim:'slideDown'
+  });
+} );

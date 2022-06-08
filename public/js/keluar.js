@@ -174,7 +174,7 @@ $(document).on('change', '.select-barang', function () {
 var datas = new Array();
 $(document).on('click','#add',async function(){
     // console.log($('#select-barang').find('option:selected').text());
-    let tgl = document.getElementById("input-date").value;
+    let tgl = document.getElementById("picker").value;
     let storeData = {
         kodebrg: '',
         nmabarang:'',
@@ -253,4 +253,41 @@ $('#input-qty').on('input',async function(){
     }else{
         $('#add').prop('disabled', false);
     }
-})
+});
+
+//list
+$(function () {
+    var dateFormat = "dd/mm/yy",
+        from = $("#picker-start")
+        .datepicker({
+            // defaultDate: "+1w",
+            dateFormat:"dd/mm/yy",
+            changeMonth: true,
+            maxDate: "-1D",
+            numberOfMonths: 2
+        })
+        .on("change", function () {
+            to.datepicker("option", "minDate", getDate(this));
+        }),
+        to = $("#picker-end").datepicker({
+            // defaultDate: "+1w",
+            dateFormat:"dd/mm/yy",
+            changeMonth: true,
+            maxDate: "0D",
+            numberOfMonths: 2
+        })
+        .on("change", function () {
+            from.datepicker("option", "maxDate", getDate(this));
+        });
+
+    function getDate(element) {
+        var date;
+        try {
+            date = $.datepicker.parseDate(dateFormat, element.value);
+        } catch (error) {
+            date = null;
+        }
+
+        return date;
+    }
+});

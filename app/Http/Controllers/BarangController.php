@@ -77,9 +77,12 @@ class BarangController extends Controller
             'qty'=> $request->input('stok'),
             'tanggalmasuk'=>$request->input('tanggalmasuk'),
         ]);
-        $barang->save();
-        $masuk->save();
-        return redirect('/barang/list')->with('success','data berhasil disimpan!');
+        $savebarang = $barang->save();
+        if ($savebarang) {
+            # code...
+            $masuk->save();
+            return redirect('/barang/list')->with('success','data berhasil disimpan!');
+        }
     }
 
     public function dataById($id){
