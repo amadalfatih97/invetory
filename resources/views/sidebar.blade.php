@@ -5,17 +5,20 @@
         <nav class="navbar-dark">
             <ul class="navbar-nav py-3">
                 <li>
-                    <a class="navbar-brand fw-bold me-auto px-3" href="#">
+                    {{-- <a class="navbar-brand fw-bold me-auto px-3" href="#">
                         <img src="{{asset('images/logo-mobile.png')}}" alt="">
-                    </a>
+                    </a> --}}
+                    <div class="text-muted small fw-bold-text-uppercase px-3">
+                        Menu
+                    </div>
                 </li>
                 <li>
                     <hr class="dropdown-divider" />
                 </li>
                 <li>
-                    <div class="text-muted small fw-bold-text-uppercase px-3">
+                    {{-- <div class="text-muted small fw-bold-text-uppercase px-3">
                         Menu
-                    </div>
+                    </div> --}}
                 </li>
                 <li>
                     <a href="" class="nav-link px-3 active">

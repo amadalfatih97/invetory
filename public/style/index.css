@@ -86,8 +86,8 @@ img,svg{
     .sidebar-nav{
         transform: none;
         visibility: visible !important;
-        /* top: var(--topNavbarHeight);
-        height: calc(100% - var(--topNavbarHeight)); */
+        top: var(--topNavbarHeight);
+        height: calc(100% - var(--topNavbarHeight));
     }
 
     .sidebar-nav li:hover{
