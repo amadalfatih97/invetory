@@ -21,7 +21,7 @@ class TransaksiController extends Controller
         ->selectRaw('COUNT(detail_trans.trans_fk) AS jumlah')
         ->leftJoin('transaksis', 'detail_trans.trans_fk', '=', 'transaksis.kode')
         // ->where('namabarang', 'LIKE', '%'.$keyword.'%')
-        ->whereBetween('transaksis.tanggal_trans', [$startdate, $enddate])
+        //->whereBetween('transaksis.tanggal_trans', [$startdate, $enddate])
         ->groupBy('detail_trans.trans_fk')
         ->orderBy('tanggal_trans','DESC')
         ->get();
