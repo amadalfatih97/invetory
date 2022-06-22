@@ -31,9 +31,9 @@
                     </thead>
                     <tbody>
                         <?php $no=1; ?>
-                        @foreach($barangs as $data)
+                        @foreach($barangs as $key=>$data)
                         <tr>
-                            <td>{{$no++}}</td>
+                            <td>{{$barangs->firstItem() + $key  }}</td>
                             <td>{{$data->namabarang}}</td>
                             <td>{{$data->namasatuan}}</td>
                             <td>{{$data->stok}}</td>

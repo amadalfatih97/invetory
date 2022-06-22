@@ -4,8 +4,9 @@
         @if ($paginator->onFirstPage())
             <li class="page-item disabled"><a href="javascript:;" class="page-link">Prev</a></li>
         @else
-            <li class="page-item"><a href="javascript:;" wire:click=previousPage rel="prev" class="page-link">Prev</a></li>
+            <li class="page-item"><a href="javascript:;" wire:click="previousPage" rel="prev" class="page-link">Prev</a></li>
         @endif
+        
         {{-- Page Element Here! --}}
         @foreach ($elements as $el)
             {{-- Make dots here! --}}
