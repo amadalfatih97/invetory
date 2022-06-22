@@ -257,11 +257,11 @@ $('#input-qty').on('input',async function(){
 
 //list
 $(function () {
-    var dateFormat = "dd/mm/yy",
+    var dateFormat = "yy/mm/dd",
         from = $("#picker-start")
         .datepicker({
             // defaultDate: "+1w",
-            dateFormat:"dd/mm/yy",
+            dateFormat:"yy/mm/dd",
             changeMonth: true,
             maxDate: "-1D",
             numberOfMonths: 2
@@ -271,7 +271,7 @@ $(function () {
         }),
         to = $("#picker-end").datepicker({
             // defaultDate: "+1w",
-            dateFormat:"dd/mm/yy",
+            dateFormat:"yy/mm/dd",
             changeMonth: true,
             maxDate: "0D",
             numberOfMonths: 2

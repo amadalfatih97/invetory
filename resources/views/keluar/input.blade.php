@@ -39,7 +39,7 @@
                             <div class="mb-3">
                                 <label for="tanggalkeluar" class="form-label">Tanggal Keluar</label>
                                 <input type="text" readonly id="picker" name="tanggalkeluar" 
-                                    class="form-control" required>
+                                    value="{{date('Y-m-d')}}" class="form-control" required>
                             </div>
                             <div class="mb-3">
                                 <div class="row">

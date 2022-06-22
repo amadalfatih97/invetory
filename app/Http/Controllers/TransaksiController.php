@@ -13,20 +13,25 @@ class TransaksiController extends Controller
 {
     /* show barang keluar */
     public function index(Request $request){
-        $startdate = $request->get('startdate') ? $request->get('startdate') : '2022-05-24';
-        $enddate = $request->enddate ? $request->enddate : '2022-06-01';
-        $keyword = $request->get('key');
-        $trans = DB::table('detail_trans')
-        ->select('detail_trans.trans_fk','transaksis.tanggal_trans','transaksis.user_fk')
-        ->selectRaw('COUNT(detail_trans.trans_fk) AS jumlah')
-        ->leftJoin('transaksis', 'detail_trans.trans_fk', '=', 'transaksis.kode')
-        // ->where('namabarang', 'LIKE', '%'.$keyword.'%')
-        //->whereBetween('transaksis.tanggal_trans', [$startdate, $enddate])
-        ->groupBy('detail_trans.trans_fk')
-        ->orderBy('tanggal_trans','DESC')
-        ->get();
-        // dd($trans);
-        return view('keluar.list',compact('trans','startdate'));
+        // $datenow = date('Y-m-d');
+        // $month1ago = date('Y-m-d', strtotime('-1 month', strtotime( $datenow ))); 
+
+        // $startdate = $request->get('startdate') ? $request->get('startdate') : $month1ago;
+        // $enddate = $request->enddate ? $request->enddate : $datenow;
+
+        // $keyword = $request->get('key');
+
+        // $trans = DB::table('detail_trans')
+        // ->select('detail_trans.trans_fk','transaksis.tanggal_trans','transaksis.user_fk')
+        // ->selectRaw('COUNT(detail_trans.trans_fk) AS jumlah')
+        // ->leftJoin('transaksis', 'detail_trans.trans_fk', '=', 'transaksis.kode')
+        // // ->where('namabarang', 'LIKE', '%'.$keyword.'%')
+        // ->whereBetween('transaksis.tanggal_trans', [$startdate, $enddate])
+        // ->groupBy('detail_trans.trans_fk')
+        // ->orderBy('tanggal_trans','DESC')
+        // ->get();
+        // // dd($trans);
+        return view('keluar.list');
     }
 
     public function Outdetail($id){
