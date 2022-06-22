@@ -54,6 +54,9 @@
         
                     </tbody>
                 </table>
+                @if (count($barangs))
+                    {{$barangs->links('livewire/paginate-live')}}
+                @endif
             </div>
         </div>
     </div>
