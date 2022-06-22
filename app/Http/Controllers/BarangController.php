@@ -10,21 +10,8 @@ use App\masuk;
 class BarangController extends Controller
 {
     public function index(Request $request){
-        $keyword = $request->get('key');
-        // $barangs = Barang::all();
-        // $barangs = Barang::paginate(2);
-        $barangs = DB::table('barangs')
-        ->select('barangs.id','namabarang', 'namasatuan', 'stok', 'lokasi', 'ket')
-        ->rightJoin('satuans', 'barangs.idsatuan', '=', 'satuans.id')
-        ->where('namabarang', 'LIKE', '%'.$keyword.'%')
-        ->where('barangs.aktif', '=', '1')
-        ->orderBy('barangs.namabarang','asc')
-        ->get();
-
-        // if ($keyword) {
-        //     $barangs = Barang::where("namabarang","LIKE","%$keyword%")->get();
-        // }
-        return view('barang.list',compact('barangs'));
+        
+        return view('barang.list');
     }
     
     public function join(){
