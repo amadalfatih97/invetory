@@ -11,7 +11,7 @@ class KeluarController extends Controller
 {
     /* view input */
     public function barangkeluar(Request $request){
-        $barangs = Barang::all();
+        $barangs = Barang::select('*')->where('aktif', '=', '1')->get();
         return view('keluar.input', compact('barangs'));
     }
 

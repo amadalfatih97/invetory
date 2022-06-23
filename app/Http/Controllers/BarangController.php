@@ -105,6 +105,7 @@ class BarangController extends Controller
         $barang = Barang::find($id);
         // $barang->delete();
         $barang->aktif = 0;
+        $barang->stok = 0;
         $barang->save();
         return redirect('/barang/list')->with('success','data berhasil dihapus!');;
     }

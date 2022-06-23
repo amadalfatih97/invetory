@@ -29,7 +29,9 @@ class MasukController extends Controller
     // form barang masuk
     public function barangmasuk(Request $request){
         $satuans = satuan::all();
-        $barangs = Barang::all();
+        // $barangs = Barang::all();
+        $barangs = Barang::select('*')->where('aktif', '=', '1')->get();
+
         $data = DB::table('barangs')->latest('id')->first();
         $last = isset($data->id) ? $data->id : 0;
         return view('masuk.input', compact('satuans','barangs','last'));
