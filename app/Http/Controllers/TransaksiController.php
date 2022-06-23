@@ -8,6 +8,7 @@ use App\Barang;
 use App\satuan;
 use App\transaksi;
 use App\detailTrans;
+use PDF;
 
 class TransaksiController extends Controller
 {
@@ -93,5 +94,34 @@ class TransaksiController extends Controller
         ->get();
         // dd($trans);
         return view('keluar.report.detail', compact('trans','detail'));
+    }
+
+    public function reportOut(Request $req){
+
+        /* validation */
+        $req->validate([
+            'startdate' => 'required',
+            'enddate' => 'required',
+        ]);
+        $datenow = date('Y-m-d');
+        $month1ago = date('Y-m-d', strtotime('-1 month', strtotime( $datenow ))); 
+
+        $startdate = date('dMy',strtotime($req->startdate)); // ? $req->get('date-start') : $month1ago;
+        $enddate = date('dMy',strtotime($req->enddate));// ? $req->enddate : $datenow;
+
+        // $keyword = $req->get('key');
+
+        $trans = DB::table('detail_trans')
+        ->select('detail_trans.trans_fk','transaksis.tanggal_trans','transaksis.user_fk')
+        ->selectRaw('COUNT(detail_trans.trans_fk) AS jumlah')
+        ->leftJoin('transaksis', 'detail_trans.trans_fk', '=', 'transaksis.kode')
+        // ->where('namabarang', 'LIKE', '%'.$keyword.'%')
+        ->whereBetween('transaksis.tanggal_trans', [$req->startdate, $req->enddate])
+        ->groupBy('detail_trans.trans_fk')
+        ->orderBy('tanggal_trans','DESC')
+        ->get();
+        // dd($trans, $startdate, $enddate);
+        $report = PDF::loadview('keluar.report.filter', compact('trans', 'startdate', 'enddate'))->setPaper('A4','potrait');;
+        return $report->stream('Out_'.$startdate.'-'.$enddate.'.pdf');
     }
 }

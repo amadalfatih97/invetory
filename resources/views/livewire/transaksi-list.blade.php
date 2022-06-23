@@ -1,13 +1,14 @@
 <div>
-    <form>
+    <form action='{{url("report/out")}}' method="POST">
+        @csrf
         <div class="row">
             <div class="col-md-6 col-sm-12 col-12">
                 <a href="{{url('barang-keluar/add')}}" class="btn btn-success mb-3 me-2 ">input</a>
-                <a href='' target="_blank" class="btn btn-primary mb-3"><i class="bi bi-printer"></i> Print</a>
+                <button type="submit" target="_blank" class="btn btn-primary mb-3"><i class="bi bi-printer"></i> Print</button>
             </div>
             <div class="col-md-3 col-sm-12  col-12">
                 <div class="input-group mb-2">
-                    <input name="date-start" id="picker-start" placeholder="tanggal awal" type="text"
+                    <input name="startdate" id="picker-start" placeholder="tanggal awal" type="text"
                         class="form-control" wire:model="date1" onchange="this.dispatchEvent(new InputEvent('input'))">
                     <button class="btn btn-outline-secondary">
                         <i class="bi bi-calendar-event"></i>
@@ -16,7 +17,7 @@
             </div>
             <div class="col-md-3 col-sm-12  col-12">
                 <div class="input-group mb-2">
-                    <input name="date-end" id="picker-end" placeholder="tanggal akhir" type="text" class="form-control"
+                    <input name="enddate" id="picker-end" placeholder="tanggal akhir" type="text" class="form-control"
                         wire:model="date2" onchange="this.dispatchEvent(new InputEvent('input'))">
                     <button class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom"
                         title="Filter">
