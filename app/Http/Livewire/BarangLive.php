@@ -19,9 +19,12 @@ class BarangLive extends Component
         // $barangs = Barang::paginate(2);
         $barangs = DB::table('barangs')
         ->select('barangs.id','namabarang', 'namasatuan', 'stok', 'lokasi', 'ket')
-        ->rightJoin('satuans', 'barangs.idsatuan', '=', 'satuans.id')
-        ->where('namabarang', 'LIKE', '%'.$this->keyword.'%')
+        ->leftJoin('satuans', 'barangs.idsatuan', '=', 'satuans.id')
         ->where('barangs.aktif', '=', '1')
+        ->where(function ($query) {
+            $query->where('namabarang', 'LIKE', '%'.$this->keyword.'%')
+            ->orWhere('namasatuan', 'LIKE', '%'.$this->keyword.'%');
+        })
         ->orderBy('barangs.namabarang','asc')
         ->paginate(3);
 
