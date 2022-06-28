@@ -43,11 +43,11 @@
                                     data-bs-placement="bottom" title="edit data" href="/barang/{{$data->id}}"><i class="bi bi-pencil-square"></i><span class="hide-to-mobile">Edit</span></a>
                             </td>
                             <td>
-                                <form action='{{url("barang/delete/{$data->id}")}}' method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash"></i><span class="hide-to-mobile">Hapus</span></button>
-                                </form>
+                                {{-- <form > --}}
+                                    {{-- @csrf --}}
+                                    {{-- @method('DELETE') --}}
+                                    <button class="btn btn-outline-danger" wire:click="confirmDelete({{$data->id}},'Delete','kamu yakin akan menghapus barang ini?')"><i class="bi bi-trash"></i><span class="hide-to-mobile">Hapus</span></button>
+                                {{-- </form> --}}
                             </td>
                         </tr>
                         @endforeach

@@ -11,7 +11,7 @@
     </div>
 </div>
 <div class="pt-3">
-    <div class="container-fluid">
+    <div class="container-md px-md-4">
         
         @if(session()->get('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -24,3 +24,6 @@
 </div>
 
 @endsection
+@push('scripts')
+<script src="{{asset('js')}}/main.js"></script>
+@endpush
