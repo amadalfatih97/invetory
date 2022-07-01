@@ -12,18 +12,18 @@
 </div>
 <div class="pt-3">
     <div class="container-md px-md-4">
+        @if(session()->get('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{session()->get('success')}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+        
         <div class="card px-3 py-5">
-            
-            @if(session()->get('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>{{session()->get('success')}}</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            @endif
             @livewire('transaksi-list')
             
-
         </div>
+        
     </div>
 </div>
 

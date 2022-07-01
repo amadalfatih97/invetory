@@ -1,5 +1,5 @@
 /* <script> */
-console.log('js has successfuly load');
+// console.log('js has successfuly load');
 // function tipeinput(val){
 //     if (val == 0) {
 //         document.getElementById("barang-baru").style.display="block";

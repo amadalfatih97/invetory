@@ -77,7 +77,7 @@ class TransaksiController extends Controller
             detailTrans::create($datas);
         }
 
-        return redirect('/barang/list')->with('success','data berhasil keluar!');
+        return redirect('/barang-keluar/list')->with('success','data berhasil diinput!');
     }
 
     public function reportOutDetail($id){

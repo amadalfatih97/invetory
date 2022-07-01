@@ -1,11 +1,11 @@
 @if ($paginator->hasPages())
-    <ul class="pagination pagination-rounded justify-content-center mt-4">
+    <ul class="pagination pagination-rounded justify-content-center">
         {{-- Previous Page Link --}}
-        @if ($paginator->onFirstPage())
-            <li class="page-item disabled"><a href="javascript:;" class="page-link">Prev</a></li>
-        @else
+        {{-- @if ($paginator->onFirstPage()) --}}
+            <li class="{{$paginator->onFirstPage() ? 'disabled' : ''}} page-item"><a href="javascript:;" wire:click="previousPage" class="page-link">Prev</a></li>
+        {{-- @else
             <li class="page-item"><a href="javascript:;" wire:click="previousPage" rel="prev" class="page-link">Prev</a></li>
-        @endif
+        @endif --}}
         
         {{-- Page Element Here! --}}
         @foreach ($elements as $el)
@@ -30,11 +30,13 @@
         @endforeach
 
         {{-- nextpage link --}}
-        @if ($paginator->hasMorePages())
+        <li class="{{$paginator->hasMorePages() ? '' : 'disabled'}} page-item">
+            <a href="javascript:;" wire:click="nextPage" class="page-link">Next</a>
+        </li>
+        {{-- @if ($paginator->hasMorePages())
             <li class="page-item"><a href="javascript:;" wire:click="nextPage" class="page-link">Next</a></li>
         @else
-            <li class="page-item disabled"><a href="javascript:;" class="page-link">Next</a></li>
-        @endif
+            <li class="page-item disabled"><a href="javascript:;" wire:click="nextPage" class="page-link">Next</a></li>
+        @endif --}}
     </ul>
-    
 @endif
