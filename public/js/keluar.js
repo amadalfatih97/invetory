@@ -255,7 +255,7 @@ $('#input-qty').on('input',async function(){
     }
 });
 
-//list
+//list filter bydate
 $(function () {
     var dateFormat = "yy/mm/dd",
         from = $("#picker-start")

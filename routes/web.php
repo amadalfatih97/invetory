@@ -41,3 +41,5 @@ Route::post('/satuan/add', 'SatuanController@prosesInput');
 Route::get('/satuan/{id}', 'SatuanController@dataById');
 Route::patch('/satuan/update/{id}', 'SatuanController@prosesUpdate');
 Route::delete('/satuan/delete/{id}', 'SatuanController@prosesDelete');
+
+Route::get('/permintaan/list', 'PermintaanController@index');

@@ -36,6 +36,6 @@ class TransaksiList extends Component
             ->get();
             // dd($trans);
             // return view('keluar.list',compact('trans','startdate'));
-        return view('livewire.transaksi-list',compact('trans'));
+        return view('livewire.keluar.transaksi-list',compact('trans'));
     }
 }

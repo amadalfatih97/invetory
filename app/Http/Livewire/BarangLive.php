@@ -33,7 +33,7 @@ class BarangLive extends Component
         // if ($keyword) {
         //     $barangs = Barang::where("namabarang","LIKE","%$keyword%")->get();
         // }
-        return view('livewire.barang-live',compact('barangs'));
+        return view('livewire.barang.barang-live',compact('barangs'));
     }
 
     public function confirmDelete($kode,$title,$message){

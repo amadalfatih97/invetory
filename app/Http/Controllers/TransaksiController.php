@@ -65,7 +65,8 @@ class TransaksiController extends Controller
             'kode'=> $notrans,
             'tanggal_trans'=> $request->input('tanggalkeluar'),
             'user_fk'=> 'user01',
-            'type_trans'=> 'out'
+            'type_trans'=> 'out',
+            'status'=> 'pending'
         ]);
         $trans->save();
         foreach ($request->kodebrg as $item => $value) {

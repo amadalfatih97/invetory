@@ -50,6 +50,12 @@
                         <span>Barang Keluar</span>
                     </a>
                 </li>
+                <li>
+                    <a href='{{url("permintaan/list")}}' class="nav-link px-3 ">
+                        <span class="me-2"><i class="bi bi-files"></i></span>
+                        <span>Permintaan</span>
+                    </a>
+                </li>
                 <li class="my-4">
                     <hr class="dropdown-divider" />
                 </li>
