@@ -43,3 +43,4 @@ Route::patch('/satuan/update/{id}', 'SatuanController@prosesUpdate');
 Route::delete('/satuan/delete/{id}', 'SatuanController@prosesDelete');
 
 Route::get('/permintaan/list', 'PermintaanController@index');
+Route::resource('permintaan', PermintaanController::class);

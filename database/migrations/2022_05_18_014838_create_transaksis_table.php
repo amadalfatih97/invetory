@@ -19,6 +19,7 @@ class CreateTransaksisTable extends Migration
             $table->date('tanggal_trans');
             $table->string('user_fk',12);
             $table->string('type_trans',20);
+            $table->string('status',20);
             $table->timestamps();
         });
     }
